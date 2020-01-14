@@ -27,7 +27,7 @@ public class ItemController {
     public ResponseEntity<Item> saveItem(Item item) {
         if (null == item.getPrice()) {
             //return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-            throw new  LyException(ExceptionEnum.PRICE_CANNOT_BE_NULL);
+            throw new LyException(ExceptionEnum.PRICE_CANNOT_BE_NULL);
         }
         item = itemService.saveItem(item);
         return ResponseEntity.status(HttpStatus.CREATED).body(item);
