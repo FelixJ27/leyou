@@ -1,11 +1,14 @@
 package com.leyou.item.service.impl;
 
+import com.leyou.common.enums.ExceptionEnum;
+import com.leyou.common.exception.LyException;
 import com.leyou.item.dao.TbCategoryMapper;
 import com.leyou.item.pojo.TbCategory;
 import com.leyou.item.service.TbCategoryService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -16,7 +19,7 @@ import java.util.List;
  */
 @Service
 public class TbCategoryServiceImpl implements TbCategoryService {
-    @Resource
+    @Autowired
     private TbCategoryMapper tbCategoryMapper;
 
     @Override
@@ -24,6 +27,9 @@ public class TbCategoryServiceImpl implements TbCategoryService {
         TbCategory category = new TbCategory();
         category.setParentId(pid);
         List<TbCategory> categoryList = tbCategoryMapper.select(category);
-        return null;
+        if (CollectionUtils.isEmpty(categoryList)) {
+            throw new LyException(ExceptionEnum.CATEGORY_NOT_FOUND);
+        }
+        return categoryList;
     }
 }
