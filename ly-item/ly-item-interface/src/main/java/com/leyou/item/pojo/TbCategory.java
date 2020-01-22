@@ -1,10 +1,6 @@
 package com.leyou.item.pojo;
 
 import lombok.Data;
-import tk.mybatis.mapper.annotation.KeySql;
-
-import javax.persistence.Id;
-import javax.persistence.Table;
 
 /**
  * @Author Felix J
@@ -13,10 +9,10 @@ import javax.persistence.Table;
  * 面向对象面向卿，不负代码不负君
  */
 @Data
-@Table(name = "tb_category")
+//@Table(name = "tb_category")
 public class TbCategory {
-    @Id
-    @KeySql(useGeneratedKeys = true)
+    /*@Id
+    @KeySql(useGeneratedKeys = true)*/
     private Long id;
     /**
      * 种类名称

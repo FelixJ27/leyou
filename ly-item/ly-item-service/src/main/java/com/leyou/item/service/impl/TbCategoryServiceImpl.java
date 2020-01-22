@@ -26,6 +26,7 @@ public class TbCategoryServiceImpl implements TbCategoryService {
     public List<TbCategory> queryCategoryListByPid(Long pid) {
         TbCategory category = new TbCategory();
         category.setParentId(pid);
+        //List<TbCategory> categoryList = tbCategoryMapper.select(category);
         List<TbCategory> categoryList = tbCategoryMapper.select(category);
         if (CollectionUtils.isEmpty(categoryList)) {
             throw new LyException(ExceptionEnum.CATEGORY_NOT_FOUND);
