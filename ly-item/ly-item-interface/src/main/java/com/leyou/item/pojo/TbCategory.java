@@ -3,7 +3,7 @@ package com.leyou.item.pojo;
 import lombok.Data;
 
 /**
- * @Author Felix J
+ * @Author Felix
  * @Description 商品种类
  * @Date 2020/1/14 17:06
  * 面向对象面向卿，不负代码不负君

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 /**
- * @Author Felix J
+ * @Author Felix
  * @Description 异常处理通知类
  * @Date 2019/12/31 11:36
  */

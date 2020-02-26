@@ -4,7 +4,7 @@ import com.leyou.common.enums.ExceptionEnum;
 import lombok.Data;
 
 /**
- * @Author: Felix J
+ * @Author: Felix
  * @Description: 异常结果类
  * @Date: 2020/1/2 23:57
  */
