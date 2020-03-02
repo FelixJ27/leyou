@@ -9,6 +9,12 @@ public interface TbBrandMapper {
      */
     List<TbBrand> queryBrandByPage(TbBrand tbBrand);
 
+    /**
+     * 新增品牌
+     * @param tbBrand
+     */
+    int saveBrand(TbBrand tbBrand);
+
     int deleteByPrimaryKey(Long id);
 
     int insert(TbBrand record);

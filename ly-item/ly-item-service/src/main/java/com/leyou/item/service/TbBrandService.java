@@ -19,6 +19,13 @@ public interface TbBrandService {
      */
     PageResult<TbBrand> queryBrandByPage(Integer page, Integer rows, String sortBy, Boolean desc, String key);
 
+    /**
+     * 新增品牌
+     * @param tbBrand
+     * @param cids
+     */
+    void saveBrand(TbBrand tbBrand, List<Long> cids);
+
     int deleteByPrimaryKey(Long id);
 
     int insert(TbBrand record);

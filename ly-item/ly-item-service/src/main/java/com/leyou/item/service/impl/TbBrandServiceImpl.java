@@ -43,6 +43,16 @@ public class TbBrandServiceImpl implements TbBrandService {
         return new PageResult<>(pageInfo.getTotal(), tbBrandList);
     }
 
+    /**
+     * @description: 新增品牌
+     * @auther: Felix
+     * @date: 2020/3/2 17:53
+     */
+    @Override
+    public void saveBrand(TbBrand tbBrand, List<Long> cids) {
+
+    }
+
     @Override
     public int deleteByPrimaryKey(Long id) {
         return 0;
