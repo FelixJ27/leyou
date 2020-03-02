@@ -7,9 +7,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="ly-item-interface" />
         <module name="ly-common" />
         <module name="ly-gateway" />
+        <module name="ly-item-interface" />
         <module name="ly-item-service" />
         <module name="ly-registry" />
       </profile>
