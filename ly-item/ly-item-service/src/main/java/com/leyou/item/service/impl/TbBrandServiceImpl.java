@@ -9,6 +9,7 @@ import com.leyou.item.dao.TbBrandMapper;
 import com.leyou.item.pojo.TbBrand;
 import com.leyou.item.service.TbBrandService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
@@ -49,8 +50,19 @@ public class TbBrandServiceImpl implements TbBrandService {
      * @date: 2020/3/2 17:53
      */
     @Override
+    @Transactional
     public void saveBrand(TbBrand tbBrand, List<Long> cids) {
+        int flag = tbBrandMapper.insertSelective(tbBrand);
+        if (flag != 1) {
+            throw new LyException(ExceptionEnum.CATEGORY_NOT_FOUND);
+        }
 
+        for (Long cid : cids) {
+            flag = tbBrandMapper.insertCategoryBrand(cid, tbBrand.getId());
+            if (flag != 1) {
+                throw new LyException(ExceptionEnum.CATEGORY_NOT_FOUND);
+            }
+        }
     }
 
     @Override

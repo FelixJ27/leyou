@@ -4,7 +4,7 @@ spring:
   application:
     name: item-service
   datasource:
-    #url: jdbc:mysql://localhost:3306/yun6
+    #url: jdbc:mysql://localhost:3306/yun6?useUnicode=true&characterEncoding=UTF-8
     #username: root
     #password: root
     #druid相关配置
@@ -13,7 +13,7 @@ spring:
       filters: stat
       driver-class-name: com.mysql.jdbc.Driver
       #基本属性
-      url: jdbc:mysql://localhost:3306/yun6
+      url: jdbc:mysql://localhost:3306/yun6?useUnicode=true&characterEncoding=UTF-8
       username: root
       password: root
       #配置初始化大小/最小/最大
