@@ -54,13 +54,13 @@ public class TbBrandServiceImpl implements TbBrandService {
     public void saveBrand(TbBrand tbBrand, List<Long> cids) {
         int flag = tbBrandMapper.insertSelective(tbBrand);
         if (flag != 1) {
-            throw new LyException(ExceptionEnum.CATEGORY_NOT_FOUND);
+            throw new LyException(ExceptionEnum.BRAND_SAVE_ERROR);
         }
 
         for (Long cid : cids) {
             flag = tbBrandMapper.insertCategoryBrand(cid, tbBrand.getId());
             if (flag != 1) {
-                throw new LyException(ExceptionEnum.CATEGORY_NOT_FOUND);
+                throw new LyException(ExceptionEnum.BRAND_SAVE_ERROR);
             }
         }
     }
