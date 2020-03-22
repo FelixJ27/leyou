@@ -33,4 +33,17 @@ public class TbCategoryServiceImpl implements TbCategoryService {
         }
         return categoryList;
     }
+
+    /**
+     * @description: 通过id集合查询分类
+     * @auther: Felix
+     */
+    @Override
+    public List<TbCategory> selectByIdList(List<Long> ids) {
+        List<TbCategory> categoryList = tbCategoryMapper.selectByIdList(ids);
+        if (CollectionUtils.isEmpty(categoryList)) {
+            throw new LyException(ExceptionEnum.CATEGORY_NOT_FOUND);
+        }
+        return categoryList;
+    }
 }

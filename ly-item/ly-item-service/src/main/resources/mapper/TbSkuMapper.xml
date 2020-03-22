@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.leyou.item.dao.TbSkuMapper" >
+  <resultMap id="BaseResultMap" type="com.leyou.item.pojo.TbSku" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="spu_id" property="spuId" jdbcType="BIGINT" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="images" property="images" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="BIGINT" />
+    <result column="indexes" property="indexes" jdbcType="VARCHAR" />
+    <result column="own_spec" property="ownSpec" jdbcType="VARCHAR" />
+    <result column="enable" property="enable" jdbcType="BIT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, spu_id, title, images, price, indexes, own_spec, enable, create_time, last_update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_sku
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tb_sku
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.leyou.item.pojo.TbSku" >
+    insert into tb_sku (id, spu_id, title, 
+      images, price, indexes, 
+      own_spec, enable, create_time, 
+      last_update_time)
+    values (#{id,jdbcType=BIGINT}, #{spuId,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, 
+      #{images,jdbcType=VARCHAR}, #{price,jdbcType=BIGINT}, #{indexes,jdbcType=VARCHAR}, 
+      #{ownSpec,jdbcType=VARCHAR}, #{enable,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{lastUpdateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.leyou.item.pojo.TbSku" >
+    insert into tb_sku
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="spuId != null" >
+        spu_id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="images != null" >
+        images,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="indexes != null" >
+        indexes,
+      </if>
+      <if test="ownSpec != null" >
+        own_spec,
+      </if>
+      <if test="enable != null" >
+        enable,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="lastUpdateTime != null" >
+        last_update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="spuId != null" >
+        #{spuId,jdbcType=BIGINT},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="images != null" >
+        #{images,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=BIGINT},
+      </if>
+      <if test="indexes != null" >
+        #{indexes,jdbcType=VARCHAR},
+      </if>
+      <if test="ownSpec != null" >
+        #{ownSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="enable != null" >
+        #{enable,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateTime != null" >
+        #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.leyou.item.pojo.TbSku" >
+    update tb_sku
+    <set >
+      <if test="spuId != null" >
+        spu_id = #{spuId,jdbcType=BIGINT},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="images != null" >
+        images = #{images,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=BIGINT},
+      </if>
+      <if test="indexes != null" >
+        indexes = #{indexes,jdbcType=VARCHAR},
+      </if>
+      <if test="ownSpec != null" >
+        own_spec = #{ownSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="enable != null" >
+        enable = #{enable,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateTime != null" >
+        last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.leyou.item.pojo.TbSku" >
+    update tb_sku
+    set spu_id = #{spuId,jdbcType=BIGINT},
+      title = #{title,jdbcType=VARCHAR},
+      images = #{images,jdbcType=VARCHAR},
+      price = #{price,jdbcType=BIGINT},
+      indexes = #{indexes,jdbcType=VARCHAR},
+      own_spec = #{ownSpec,jdbcType=VARCHAR},
+      enable = #{enable,jdbcType=BIT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

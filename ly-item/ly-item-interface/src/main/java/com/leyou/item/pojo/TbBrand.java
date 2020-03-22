@@ -2,6 +2,8 @@ package com.leyou.item.pojo;
 
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * @Author Felix
  * @Description 商品品牌
@@ -26,4 +28,8 @@ public class TbBrand {
      * 品牌的首字母
      */
     private String letter;
+    /**
+     * 一个品牌对应多个商品
+     */
+    private List<TbSpu> spuList;
 }

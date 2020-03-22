@@ -15,4 +15,10 @@ import java.util.List;
 public interface TbCategoryService {
 
     List<TbCategory> queryCategoryListByPid(Long pid);
+
+    /**
+     * @description: 通过id集合查询分类
+     * @auther: Felix
+     */
+    List<TbCategory> selectByIdList(List<Long> ids);
 }

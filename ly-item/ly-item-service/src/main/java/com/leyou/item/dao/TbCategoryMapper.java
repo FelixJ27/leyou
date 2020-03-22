@@ -7,6 +7,11 @@ import java.util.List;
 
 public interface TbCategoryMapper {
     List<TbCategory> select(TbCategory tbCategory);
+    /**
+     * @description: 通过id集合查询分类
+     * @auther: Felix
+     */
+    List<TbCategory> selectByIdList(List<Long> ids);
 
     int deleteByPrimaryKey(Long id);
 
