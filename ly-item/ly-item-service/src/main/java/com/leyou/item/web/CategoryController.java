@@ -19,7 +19,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("category")
-public class TbCategoryController {
+public class CategoryController {
     @Resource
     private TbCategoryService tbCategoryService;
 

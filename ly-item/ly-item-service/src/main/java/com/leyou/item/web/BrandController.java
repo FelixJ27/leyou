@@ -18,7 +18,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("brand")
-public class TbBrandController {
+public class BrandController {
 
     @Resource
     private TbBrandService tbBrandService;
@@ -39,9 +39,22 @@ public class TbBrandController {
         return ResponseEntity.ok(tbBrandService.queryBrandByPage(page, rows,sortBy, desc,key));
     }
 
+    /**
+     * @description: 新增品牌
+     * @auther: Felix
+     */
     @PostMapping()
     public ResponseEntity<Void> saveBrand(TbBrand brand, @RequestParam("cids")List<Long> cids){
         tbBrandService.saveBrand(brand, cids);
         return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    /**
+     * @description: 根据分类id查询品牌
+     * @auther: Felix
+     */
+    @GetMapping("/cid/{cid}")
+    public ResponseEntity<List<TbBrand>> queryBrandByCid(@PathVariable("cid") Long cid) {
+        return null;
     }
 }

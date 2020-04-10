@@ -70,10 +70,15 @@ public class GoodsServiceImpl implements GoodsService {
         //处理商品分类名称
         handleCategory(spuVoList);
 
-        PageInfo<SpuVo> pageInfo = new PageInfo<>();
-        return new  PageResult<>(pageInfo.getTotal(), spuVoList);
+        //PageInfo的泛型为sql查出的集合的泛型
+        PageInfo<TbSpu> pageInfo = new PageInfo<>(spuList);
+        return new PageResult<>(pageInfo.getTotal(), spuVoList);
     }
 
+    /**
+     * @description: 处理商品分类名称
+     * @auther: Felix
+     */
     private void handleCategory(List<SpuVo> spuList) {
         for (SpuVo spuVo : spuList) {
             List<TbCategory> categorieList = categoryService.selectByIdList(Arrays.asList(spuVo.getCid1(), spuVo.getCid2(), spuVo.getCid3()));
