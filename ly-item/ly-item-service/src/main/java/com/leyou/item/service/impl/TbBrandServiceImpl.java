@@ -66,6 +66,11 @@ public class TbBrandServiceImpl implements TbBrandService {
     }
 
     @Override
+    public List<TbBrand> queryByCategoryId(Long cid) {
+        return tbBrandMapper.queryByCategoryId(cid);
+    }
+
+    @Override
     public int deleteByPrimaryKey(Long id) {
         return 0;
     }

@@ -1,8 +1,10 @@
 package com.leyou.item.web;
 
+import com.leyou.item.pojo.TbBrand;
 import com.leyou.item.pojo.TbSpecGroup;
 import com.leyou.item.pojo.TbSpecParam;
 import com.leyou.item.service.SpecificationService;
+import com.leyou.item.service.TbBrandService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +21,8 @@ import java.util.List;
 public class SpecificationController {
     @Resource
     private SpecificationService specificationService;
+    @Resource
+    private TbBrandService brandService;
 
     /**
      * @description: 根据商品种类id查询规格参数
@@ -30,12 +34,13 @@ public class SpecificationController {
     }
 
     /**
-     * @description: 根据商品组id查询规格参数的参数名
+     * @description: 查询规格参数的参数名
      * @auther: Felix
      */
     @GetMapping("params")
-    public ResponseEntity<List<TbSpecParam>> queryParamByCid(@RequestParam("gid") Long gid) {
-        return ResponseEntity.ok(specificationService.queryParamByGid(gid));
+    public ResponseEntity<List<TbSpecParam>> queryParamList(@RequestParam(value = "gid", required = false) Long gid,
+                                                             @RequestParam (value = "cid", required = false) Long cid) {
+        return ResponseEntity.ok(specificationService.querySpecParamList(gid, cid));
     }
 
     /**
@@ -63,4 +68,5 @@ public class SpecificationController {
         specificationService.deleteSpecParam(id);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
+
 }

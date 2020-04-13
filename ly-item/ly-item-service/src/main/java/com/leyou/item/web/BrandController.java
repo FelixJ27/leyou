@@ -21,7 +21,7 @@ import java.util.List;
 public class BrandController {
 
     @Resource
-    private TbBrandService tbBrandService;
+    private TbBrandService brandService;
 
     /**
      * @description: 分页查询品牌
@@ -36,7 +36,7 @@ public class BrandController {
             @RequestParam(value = "desc", defaultValue = "false") Boolean desc,
             @RequestParam(value = "key", required = false) String key
     ) {
-        return ResponseEntity.ok(tbBrandService.queryBrandByPage(page, rows,sortBy, desc,key));
+        return ResponseEntity.ok(brandService.queryBrandByPage(page, rows,sortBy, desc,key));
     }
 
     /**
@@ -45,7 +45,7 @@ public class BrandController {
      */
     @PostMapping()
     public ResponseEntity<Void> saveBrand(TbBrand brand, @RequestParam("cids")List<Long> cids){
-        tbBrandService.saveBrand(brand, cids);
+        brandService.saveBrand(brand, cids);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
@@ -55,6 +55,6 @@ public class BrandController {
      */
     @GetMapping("/cid/{cid}")
     public ResponseEntity<List<TbBrand>> queryBrandByCid(@PathVariable("cid") Long cid) {
-        return null;
+        return ResponseEntity.ok(brandService.queryByCategoryId(cid));
     }
 }

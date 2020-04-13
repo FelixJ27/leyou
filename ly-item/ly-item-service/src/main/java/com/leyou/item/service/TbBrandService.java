@@ -26,6 +26,13 @@ public interface TbBrandService {
      */
     void saveBrand(TbBrand tbBrand, List<Long> cids);
 
+    /**
+     * 通过cid查询品牌
+     * @param cid
+     * @return
+     */
+    List<TbBrand> queryByCategoryId(Long cid);
+
     int deleteByPrimaryKey(Long id);
 
     int insert(TbBrand record);

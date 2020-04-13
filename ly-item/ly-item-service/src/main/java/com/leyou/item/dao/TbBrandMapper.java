@@ -1,6 +1,8 @@
 package com.leyou.item.dao;
 
 import com.leyou.item.pojo.TbBrand;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 public interface TbBrandMapper {
@@ -21,6 +23,13 @@ public interface TbBrandMapper {
      * @return
      */
     int insertCategoryBrand(Long categoryId, Long brandId);
+
+    /**
+     * 通过cid查询品牌
+     * @param cid
+     * @return
+     */
+    List<TbBrand> queryByCategoryId(@Param(value = "cid") Long cid);
 
     int deleteByPrimaryKey(Long id);
 

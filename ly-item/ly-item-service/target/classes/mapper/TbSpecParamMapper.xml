@@ -15,10 +15,16 @@
     <sql id="Base_Column_List">
     id, cid, group_id, `name`, `numeric`, unit, generic, searching, segments
   </sql>
-    <select id="queryParamByGid" resultMap="BaseResultMap" parameterType="java.lang.Long">
+    <select id="querySpecParamList" resultMap="BaseResultMap" parameterType="com.leyou.item.pojo.TbSpecParam">
         select
         <include refid="Base_Column_List"/>
-        from tb_spec_param where group_id = #{gid, jdbcType=BIGINT}
+        from tb_spec_param where 1=1
+        <if test="groupId != null ||groupId != ''">
+            and group_id = #{groupId, jdbcType=BIGINT}
+        </if>
+        <if test="cid != null || cid != ''">
+            and cid = #{cid, jdbcType=BIGINT}
+        </if>
     </select>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
         select

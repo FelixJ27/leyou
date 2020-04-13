@@ -22,6 +22,19 @@
         </if>
     </select>
 
+    <select id="queryByCategoryId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        SELECT
+            b.id,
+            b.`name`,
+            b.letter,
+            b.image
+        FROM
+            tb_brand b
+            INNER JOIN tb_category_brand cb ON b.id = cb.brand_id
+        WHERE
+            cb.category_id = #{cid}
+    </select>
+
     <!-- 新增中间表数据 -->
     <insert id="insertCategoryBrand">
       insert into tb_category_brand(category_id, brand_id) values(#{categoryId,jdbcType=BIGINT}, #{brandId,jdbcType=BIGINT})

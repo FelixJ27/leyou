@@ -8,10 +8,10 @@ public interface TbSpecParamMapper {
 
     /**
      * 查询规格参数组下的参数名
-     * @param gid
+     * @param specParam
      * @return
      */
-    List<TbSpecParam> queryParamByGid(Long gid);
+    List<TbSpecParam> querySpecParamList(TbSpecParam specParam);
 
     int deleteByPrimaryKey(Long id);
 
