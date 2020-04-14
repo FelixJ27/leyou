@@ -1,8 +1,10 @@
 package com.leyou.item.pojo;
 
+import jdk.nashorn.internal.runtime.linker.LinkerCallSite;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @Author Felix
@@ -58,5 +60,9 @@ public class TbSpu {
      * 一个商品对应一个品牌
      */
     private TbBrand brand;
+
+    private TbSpuDetail spuDetail;
+
+    private List<TbSku> skus;
 
 }

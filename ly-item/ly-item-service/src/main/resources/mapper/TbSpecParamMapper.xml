@@ -19,10 +19,10 @@
         select
         <include refid="Base_Column_List"/>
         from tb_spec_param where 1=1
-        <if test="groupId != null ||groupId != ''">
+        <if test="groupId != null">
             and group_id = #{groupId, jdbcType=BIGINT}
         </if>
-        <if test="cid != null || cid != ''">
+        <if test="cid != null">
             and cid = #{cid, jdbcType=BIGINT}
         </if>
     </select>

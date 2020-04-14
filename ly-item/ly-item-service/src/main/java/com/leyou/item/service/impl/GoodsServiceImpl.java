@@ -5,11 +5,8 @@ import com.github.pagehelper.PageInfo;
 import com.leyou.common.enums.ExceptionEnum;
 import com.leyou.common.exception.LyException;
 import com.leyou.common.vo.PageResult;
-import com.leyou.item.dao.TbCategoryMapper;
-import com.leyou.item.dao.TbSpuDetailMapper;
-import com.leyou.item.dao.TbSpuMapper;
-import com.leyou.item.pojo.TbCategory;
-import com.leyou.item.pojo.TbSpu;
+import com.leyou.item.dao.*;
+import com.leyou.item.pojo.*;
 import com.leyou.item.pojo.vo.SpuVo;
 import com.leyou.item.service.GoodsService;
 import com.leyou.item.service.TbCategoryService;
@@ -21,6 +18,7 @@ import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,6 +35,10 @@ public class GoodsServiceImpl implements GoodsService {
     private TbSpuDetailMapper spuDetailMapper;
     @Autowired
     private TbCategoryService categoryService;
+    @Autowired
+    private TbSkuMapper skuMapper;
+    @Autowired
+    private TbStockMapper stockMapper;
 
     /**
      * @description: 分页模查商品及种类、品牌
@@ -73,6 +75,47 @@ public class GoodsServiceImpl implements GoodsService {
         //PageInfo的泛型为sql查出的集合的泛型
         PageInfo<TbSpu> pageInfo = new PageInfo<>(spuList);
         return new PageResult<>(pageInfo.getTotal(), spuVoList);
+    }
+
+    @Override
+    public void saveGoods(TbSpu spu) {
+        //新增spu
+        spu.setCreateTime(new Date());
+        spu.setLastUpdateTime(spu.getCreateTime());
+        spu.setSaleable(true);
+        spu.setValid(false);
+        int count = spuMapper.insertSelective(spu);
+        if (count != 1) {
+            throw new LyException(ExceptionEnum.GOODS_SAVE_ERROR);
+        }
+        //新增detail
+        TbSpuDetail spuDetail = spu.getSpuDetail();
+        spuDetail.setSpuId(spu.getId());
+        spuDetailMapper.insertSelective(spuDetail);
+
+        //新增sku
+        List<TbSku> skus = spu.getSkus();
+        for (TbSku sku : skus) {
+            sku.setCreateTime(new Date());
+            sku.setLastUpdateTime(sku.getCreateTime());
+            sku.setSpuId(spu.getId());
+
+            count = skuMapper.insertSelective(sku);
+            if (count != 1) {
+                throw new LyException(ExceptionEnum.GOODS_SAVE_ERROR);
+            }
+
+
+            //新增库存
+            TbStock stock = new TbStock();
+            stock.setSkuId(sku.getId());
+            stock.setStock(sku.getStock());
+
+            count = stockMapper.insertSelective(stock);
+            if (count != 1) {
+                throw new LyException(ExceptionEnum.GOODS_SAVE_ERROR);
+            }
+        }
     }
 
     /**

@@ -1,6 +1,7 @@
 package com.leyou.item.service;
 
 import com.leyou.common.vo.PageResult;
+import com.leyou.item.pojo.TbSpu;
 import com.leyou.item.pojo.vo.SpuVo;
 
 /**
@@ -13,4 +14,6 @@ public interface GoodsService {
      * @auther: Felix
      */
     PageResult<SpuVo> querySpuByPage(Integer page, String title, Boolean saleable, Integer rows);
+
+    void saveGoods(TbSpu spu);
 }

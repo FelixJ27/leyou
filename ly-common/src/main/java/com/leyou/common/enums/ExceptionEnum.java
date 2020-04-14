@@ -23,7 +23,8 @@ public enum ExceptionEnum {
     SPEC_PARAM_SAVE_FAIL(500, "新增规格参数信息失败"),
     UPDATE_SPEC_PARAM_FAIL(500, "更新规格参数信息失败"),
     UPLOAD_FILE_FAIL(500, "文件上传失败"),
-    DELETE_SPEC_PARAM_FAIL(500, "删除规格参数信息失败")
+    DELETE_SPEC_PARAM_FAIL(500, "删除规格参数信息失败"),
+    GOODS_SAVE_ERROR(500, "新增商品失败"),
     ;
     /**
      * 状态码

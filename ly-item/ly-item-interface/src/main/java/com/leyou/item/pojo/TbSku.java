@@ -51,4 +51,6 @@ public class TbSku {
      */
     private Date lastUpdateTime;
 
+    private Integer stock;
+
 }

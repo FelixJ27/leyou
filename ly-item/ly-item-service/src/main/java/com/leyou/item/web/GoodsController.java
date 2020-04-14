@@ -1,13 +1,14 @@
 package com.leyou.item.web;
 
 import com.leyou.common.vo.PageResult;
+import com.leyou.item.pojo.TbSpu;
 import com.leyou.item.pojo.vo.SpuVo;
 import com.leyou.item.service.GoodsService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
 /**
@@ -28,5 +29,15 @@ public class GoodsController {
             @RequestParam(name = "rows", defaultValue = "5") Integer rows
     ) {
         return ResponseEntity.ok(goodsService.querySpuByPage(page, key, saleable, rows));
+    }
+
+    /**
+     * @Author Felix J
+     * @Description 商品新增
+     */
+    @PostMapping("goods")
+    public ResponseEntity<Void> saveGoods(@RequestBody TbSpu spu) {
+        goodsService.saveGoods(spu);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }

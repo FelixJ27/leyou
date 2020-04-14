@@ -40,7 +40,7 @@
         delete from tb_spu
         where id = #{id,jdbcType=BIGINT}
     </delete>
-    <insert id="insert" parameterType="com.leyou.item.pojo.TbSpu">
+    <insert id="insert" parameterType="com.leyou.item.pojo.TbSpu" keyProperty="id" useGeneratedKeys="true">
     insert into tb_spu (id, title, sub_title, 
       cid1, cid2, cid3, brand_id, 
       saleable, valid, create_time, 

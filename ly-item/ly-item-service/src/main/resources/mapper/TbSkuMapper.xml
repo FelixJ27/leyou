@@ -36,7 +36,7 @@
       #{ownSpec,jdbcType=VARCHAR}, #{enable,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}, 
       #{lastUpdateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.leyou.item.pojo.TbSku" >
+  <insert id="insertSelective" parameterType="com.leyou.item.pojo.TbSku" keyProperty="id" useGeneratedKeys="true">
     insert into tb_sku
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
