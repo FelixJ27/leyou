@@ -69,4 +69,4 @@ public class SpecificationController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-}
+} 

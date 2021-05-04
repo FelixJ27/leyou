@@ -11,9 +11,9 @@ spring:
     druid:
       #监控统计拦截的filters
       filters: stat
-      driver-class-name: com.mysql.jdbc.Driver
+      driver-class-name: com.mysql.cj.jdbc.Driver
       #基本属性
-      url: jdbc:mysql://localhost:3306/leyou?useUnicode=true&characterEncoding=UTF-8
+      url: jdbc:mysql://39.106.55.16:3306/leyou?useUnicode=true&characterEncoding=UTF-8
       username: root
       password: root
       #配置初始化大小/最小/最大

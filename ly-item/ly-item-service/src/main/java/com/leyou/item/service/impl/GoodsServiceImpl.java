@@ -14,6 +14,7 @@ import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
@@ -78,6 +79,7 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
+    @Transactional
     public void saveGoods(TbSpu spu) {
         //新增spu
         spu.setCreateTime(new Date());
@@ -95,6 +97,7 @@ public class GoodsServiceImpl implements GoodsService {
 
         //新增sku
         List<TbSku> skus = spu.getSkus();
+        List<TbStock> stockList = new ArrayList<>();
         for (TbSku sku : skus) {
             sku.setCreateTime(new Date());
             sku.setLastUpdateTime(sku.getCreateTime());
@@ -110,11 +113,13 @@ public class GoodsServiceImpl implements GoodsService {
             TbStock stock = new TbStock();
             stock.setSkuId(sku.getId());
             stock.setStock(sku.getStock());
+            stockList.add(stock);
+        }
 
-            count = stockMapper.insertSelective(stock);
-            if (count != 1) {
-                throw new LyException(ExceptionEnum.GOODS_SAVE_ERROR);
-            }
+        //count = stockMapper.insertSelective(stock);
+        count = stockMapper.batchInsert(stockList);
+        if (count != stockList.size()) {
+            throw new LyException(ExceptionEnum.GOODS_SAVE_ERROR);
         }
     }
 
