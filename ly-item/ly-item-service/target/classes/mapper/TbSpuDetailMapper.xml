@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.leyou.item.dao.TbSpuDetailMapper" >
-  <resultMap id="BaseResultMap" type="com.leyou.item.pojo.TbSpuDetail" >
+<mapper namespace="com.leyou.search.item.dao.TbSpuDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.leyou.search.item.pojo.TbSpuDetail" >
     <id column="spu_id" property="spuId" jdbcType="BIGINT" />
     <result column="specifications" property="specifications" jdbcType="VARCHAR" />
-    <result column="spec_template" property="specTemplate" jdbcType="VARCHAR" />
+    <result column="special_spec" property="specialSpec" jdbcType="VARCHAR" />
     <result column="packing_list" property="packingList" jdbcType="VARCHAR" />
     <result column="after_service" property="afterService" jdbcType="VARCHAR" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.leyou.item.pojo.TbSpuDetail" extends="BaseResultMap" >
+  <resultMap id="ResultMapWithBLOBs" type="com.leyou.search.item.pojo.TbSpuDetail" extends="BaseResultMap" >
     <result column="description" property="description" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    spu_id, specifications, spec_template, packing_list, after_service
+    spu_id, specifications, special_spec, packing_list, after_service
   </sql>
   <sql id="Blob_Column_List" >
     description
@@ -29,15 +29,15 @@
     delete from tb_spu_detail
     where spu_id = #{spuId,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.leyou.item.pojo.TbSpuDetail" >
-    insert into tb_spu_detail (spu_id, specifications, spec_template, 
+  <insert id="insert" parameterType="com.leyou.search.item.pojo.TbSpuDetail" >
+    insert into tb_spu_detail (spu_id, specifications, special_spec,
       packing_list, after_service, description
       )
-    values (#{spuId,jdbcType=BIGINT}, #{specifications,jdbcType=VARCHAR}, #{specTemplate,jdbcType=VARCHAR}, 
+    values (#{spuId,jdbcType=BIGINT}, #{specifications,jdbcType=VARCHAR}, #{specialSpec,jdbcType=VARCHAR},
       #{packingList,jdbcType=VARCHAR}, #{afterService,jdbcType=VARCHAR}, #{description,jdbcType=LONGVARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.leyou.item.pojo.TbSpuDetail" >
+  <insert id="insertSelective" parameterType="com.leyou.search.item.pojo.TbSpuDetail" >
     insert into tb_spu_detail
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="spuId != null" >
@@ -46,8 +46,8 @@
       <if test="specifications != null" >
         specifications,
       </if>
-      <if test="specTemplate != null" >
-        spec_template,
+      <if test="specialSpec != null" >
+        special_spec,
       </if>
       <if test="packingList != null" >
         packing_list,
@@ -66,8 +66,8 @@
       <if test="specifications != null" >
         #{specifications,jdbcType=VARCHAR},
       </if>
-      <if test="specTemplate != null" >
-        #{specTemplate,jdbcType=VARCHAR},
+      <if test="specialSpec != null" >
+        #{specialSpec,jdbcType=VARCHAR},
       </if>
       <if test="packingList != null" >
         #{packingList,jdbcType=VARCHAR},
@@ -80,14 +80,14 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.leyou.item.pojo.TbSpuDetail" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.leyou.search.item.pojo.TbSpuDetail" >
     update tb_spu_detail
     <set >
       <if test="specifications != null" >
         specifications = #{specifications,jdbcType=VARCHAR},
       </if>
-      <if test="specTemplate != null" >
-        spec_template = #{specTemplate,jdbcType=VARCHAR},
+      <if test="specialSpec != null" >
+        special_spec = #{specialSpec,jdbcType=VARCHAR},
       </if>
       <if test="packingList != null" >
         packing_list = #{packingList,jdbcType=VARCHAR},
@@ -101,19 +101,19 @@
     </set>
     where spu_id = #{spuId,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.leyou.item.pojo.TbSpuDetail" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.leyou.search.item.pojo.TbSpuDetail" >
     update tb_spu_detail
     set specifications = #{specifications,jdbcType=VARCHAR},
-      spec_template = #{specTemplate,jdbcType=VARCHAR},
+      special_spec = #{specialSpec,jdbcType=VARCHAR},
       packing_list = #{packingList,jdbcType=VARCHAR},
       after_service = #{afterService,jdbcType=VARCHAR},
       description = #{description,jdbcType=LONGVARCHAR}
     where spu_id = #{spuId,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.leyou.item.pojo.TbSpuDetail" >
+  <update id="updateByPrimaryKey" parameterType="com.leyou.search.item.pojo.TbSpuDetail" >
     update tb_spu_detail
     set specifications = #{specifications,jdbcType=VARCHAR},
-      spec_template = #{specTemplate,jdbcType=VARCHAR},
+      special_spec = #{specialSpec,jdbcType=VARCHAR},
       packing_list = #{packingList,jdbcType=VARCHAR},
       after_service = #{afterService,jdbcType=VARCHAR}
     where spu_id = #{spuId,jdbcType=BIGINT}

@@ -23,7 +23,7 @@ fdfs:
     - 192.168.150.128:22122
 ly:
   upload:
-    baseUrl: "http://image.leyou.com/"
+    baseUrl: "http://image.leetgou.com/"
     allowTypes:
       - image/png
       - image/jpg

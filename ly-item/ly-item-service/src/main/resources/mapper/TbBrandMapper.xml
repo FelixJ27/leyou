@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.leyou.item.dao.TbBrandMapper">
-    <resultMap id="BaseResultMap" type="com.leyou.item.pojo.TbBrand">
+<mapper namespace="com.leyou.search.item.dao.TbBrandMapper">
+    <resultMap id="BaseResultMap" type="com.leyou.search.item.pojo.TbBrand">
         <id column="id" property="id" jdbcType="BIGINT"/>
         <result column="name" property="name" jdbcType="VARCHAR"/>
         <result column="image" property="image" jdbcType="VARCHAR"/>
@@ -12,7 +12,7 @@
   </sql>
 
     <!-- 分页查询品牌 -->
-    <select id="queryBrandByPage" resultMap="BaseResultMap" parameterType="com.leyou.item.pojo.TbBrand">
+    <select id="queryBrandByPage" resultMap="BaseResultMap" parameterType="com.leyou.search.item.pojo.TbBrand">
         select
         <include refid="Base_Column_List"/>
         from tb_brand
@@ -35,6 +35,12 @@
             cb.category_id = #{cid}
     </select>
 
+    <select id="queryById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM `tb_brand` WHERE id = #{id,jdbcType=BIGINT}
+    </select>
+
     <!-- 新增中间表数据 -->
     <insert id="insertCategoryBrand">
       insert into tb_category_brand(category_id, brand_id) values(#{categoryId,jdbcType=BIGINT}, #{brandId,jdbcType=BIGINT})
@@ -49,13 +55,13 @@
     delete from tb_brand
     where id = #{id,jdbcType=BIGINT}
   </delete>
-    <insert id="insert" parameterType="com.leyou.item.pojo.TbBrand">
+    <insert id="insert" parameterType="com.leyou.search.item.pojo.TbBrand">
     insert into tb_brand (id, `name`, image,
       letter)
     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, 
       #{letter,jdbcType=CHAR})
   </insert>
-    <insert id="insertSelective" parameterType="com.leyou.item.pojo.TbBrand" keyProperty="id"
+    <insert id="insertSelective" parameterType="com.leyou.search.item.pojo.TbBrand" keyProperty="id"
             useGeneratedKeys="true">
         insert into tb_brand
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -87,7 +93,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.leyou.item.pojo.TbBrand">
+    <update id="updateByPrimaryKeySelective" parameterType="com.leyou.search.item.pojo.TbBrand">
         update tb_brand
         <set>
             <if test="name != null">
@@ -102,7 +108,7 @@
         </set>
         where id = #{id,jdbcType=BIGINT}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.leyou.item.pojo.TbBrand">
+    <update id="updateByPrimaryKey" parameterType="com.leyou.search.item.pojo.TbBrand">
     update tb_brand
     set `name` = #{name,jdbcType=VARCHAR},
       image = #{image,jdbcType=VARCHAR},

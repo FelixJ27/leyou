@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.leyou.item.dao.TbSpuMapper">
-    <resultMap id="BaseResultMap" type="com.leyou.item.pojo.TbSpu">
+<mapper namespace="com.leyou.search.item.dao.TbSpuMapper">
+    <resultMap id="BaseResultMap" type="com.leyou.search.item.pojo.TbSpu">
         <id column="id" property="id" jdbcType="BIGINT"/>
         <result column="title" property="title" jdbcType="VARCHAR"/>
         <result column="sub_title" property="subTitle" jdbcType="VARCHAR"/>
@@ -13,7 +13,7 @@
         <result column="valid" property="valid" jdbcType="BIT"/>
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
         <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP"/>
-        <association property="brand" javaType="com.leyou.item.pojo.TbBrand">
+        <association property="brand" javaType="com.leyou.search.item.pojo.TbBrand">
             <id column="id" property="id" jdbcType="BIGINT"/>
             <result column="name" property="name" jdbcType="VARCHAR"/>
             <result column="image" property="image" jdbcType="VARCHAR"/>
@@ -40,7 +40,7 @@
         delete from tb_spu
         where id = #{id,jdbcType=BIGINT}
     </delete>
-    <insert id="insert" parameterType="com.leyou.item.pojo.TbSpu" keyProperty="id" useGeneratedKeys="true">
+    <insert id="insert" parameterType="com.leyou.search.item.pojo.TbSpu" keyProperty="id" useGeneratedKeys="true">
     insert into tb_spu (id, title, sub_title, 
       cid1, cid2, cid3, brand_id, 
       saleable, valid, create_time, 
@@ -50,7 +50,8 @@
       #{saleable,jdbcType=BIT}, #{valid,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}, 
       #{lastUpdateTime,jdbcType=TIMESTAMP})
   </insert>
-    <insert id="insertSelective" parameterType="com.leyou.item.pojo.TbSpu">
+    <insert id="insertSelective" parameterType="com.leyou.search.item.pojo.TbSpu" keyProperty="id"
+            useGeneratedKeys="true">
         insert into tb_spu
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -123,7 +124,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.leyou.item.pojo.TbSpu">
+    <update id="updateByPrimaryKeySelective" parameterType="com.leyou.search.item.pojo.TbSpu">
         update tb_spu
         <set>
             <if test="title != null">
@@ -159,7 +160,7 @@
         </set>
         where id = #{id,jdbcType=BIGINT}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.leyou.item.pojo.TbSpu">
+    <update id="updateByPrimaryKey" parameterType="com.leyou.search.item.pojo.TbSpu">
     update tb_spu
     set title = #{title,jdbcType=VARCHAR},
       sub_title = #{subTitle,jdbcType=VARCHAR},

@@ -11,6 +11,7 @@
 
     <groupId>com.leyou.service</groupId>
     <artifactId>ly-item-interface</artifactId>
+    <packaging>jar</packaging>
 
     <dependencies>
         <!--<dependency>
@@ -21,6 +22,15 @@
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.leyou.common</groupId>
+            <artifactId>ly-common</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 

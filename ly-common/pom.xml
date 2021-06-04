@@ -11,6 +11,7 @@
 
     <groupId>com.leyou.common</groupId>
     <artifactId>ly-common</artifactId>
+    <packaging>jar</packaging>
     <dependencies>
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
@@ -31,6 +32,5 @@
             <artifactId>spring-webmvc</artifactId>
         </dependency>
     </dependencies>
-
 
 </project>
