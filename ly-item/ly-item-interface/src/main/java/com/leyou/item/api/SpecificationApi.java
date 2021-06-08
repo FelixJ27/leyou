@@ -1,7 +1,6 @@
 package com.leyou.item.api;
 
-import com.leyou.search.item.pojo.TbSpecParam;
-import org.springframework.http.ResponseEntity;
+import com.leyou.item.pojo.TbSpecParam;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 

@@ -1,6 +1,6 @@
 package com.leyou.item.api;
 
-import com.leyou.search.item.pojo.TbCategory;
+import com.leyou.item.pojo.TbCategory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 

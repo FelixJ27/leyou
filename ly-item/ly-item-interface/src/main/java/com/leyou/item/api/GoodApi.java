@@ -1,10 +1,9 @@
 package com.leyou.item.api;
 
-import com.leyou.search.common.vo.PageResult;
-import com.leyou.search.item.pojo.TbSku;
-import com.leyou.search.item.pojo.TbSpu;
-import com.leyou.search.item.pojo.TbSpuDetail;
-import com.leyou.search.item.pojo.vo.SpuVo;
+import com.leyou.common.vo.PageResult;
+import com.leyou.item.pojo.TbSku;
+import com.leyou.item.pojo.TbSpuDetail;
+import com.leyou.item.pojo.vo.SpuVo;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

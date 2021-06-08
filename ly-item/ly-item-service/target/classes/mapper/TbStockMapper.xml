@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.leyou.search.item.dao.TbStockMapper">
-    <resultMap id="BaseResultMap" type="com.leyou.search.item.pojo.TbStock">
+<mapper namespace="com.leyou.item.dao.TbStockMapper">
+    <resultMap id="BaseResultMap" type="com.leyou.item.pojo.TbStock">
         <id column="sku_id" jdbcType="BIGINT" property="skuId"/>
         <result column="seckill_stock" jdbcType="INTEGER" property="seckillStock"/>
         <result column="seckill_total" jdbcType="INTEGER" property="seckillTotal"/>
@@ -29,13 +29,13 @@
     delete from tb_stock
     where sku_id = #{skuId,jdbcType=BIGINT}
   </delete>
-    <insert id="insert" parameterType="com.leyou.search.item.pojo.TbStock">
+    <insert id="insert" parameterType="com.leyou.item.pojo.TbStock">
     insert into tb_stock (sku_id, seckill_stock, seckill_total, 
       stock)
     values (#{skuId,jdbcType=BIGINT}, #{seckillStock,jdbcType=INTEGER}, #{seckillTotal,jdbcType=INTEGER}, 
       #{stock,jdbcType=INTEGER})
   </insert>
-    <insert id="insertSelective" parameterType="com.leyou.search.item.pojo.TbStock">
+    <insert id="insertSelective" parameterType="com.leyou.item.pojo.TbStock">
         insert into tb_stock
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="skuId != null">
@@ -100,7 +100,7 @@
             </trim>
         </foreach>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.leyou.search.item.pojo.TbStock">
+    <update id="updateByPrimaryKeySelective" parameterType="com.leyou.item.pojo.TbStock">
         update tb_stock
         <set>
             <if test="seckillStock != null">
@@ -115,7 +115,7 @@
         </set>
         where sku_id = #{skuId,jdbcType=BIGINT}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.leyou.search.item.pojo.TbStock">
+    <update id="updateByPrimaryKey" parameterType="com.leyou.item.pojo.TbStock">
     update tb_stock
     set seckill_stock = #{seckillStock,jdbcType=INTEGER},
       seckill_total = #{seckillTotal,jdbcType=INTEGER},

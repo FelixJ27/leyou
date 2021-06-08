@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.leyou.search.item.dao.TbSpecParamMapper">
-    <resultMap id="BaseResultMap" type="com.leyou.search.item.pojo.TbSpecParam">
+<mapper namespace="com.leyou.item.dao.TbSpecParamMapper">
+    <resultMap id="BaseResultMap" type="com.leyou.item.pojo.TbSpecParam">
         <id column="id" property="id" jdbcType="BIGINT"/>
         <result column="cid" property="cid" jdbcType="BIGINT"/>
         <result column="group_id" property="groupId" jdbcType="BIGINT"/>
@@ -15,7 +15,7 @@
     <sql id="Base_Column_List">
     id, cid, group_id, `name`, `numeric`, unit, generic, searching, segments
   </sql>
-    <select id="querySpecParamList" resultMap="BaseResultMap" parameterType="com.leyou.search.item.pojo.TbSpecParam">
+    <select id="querySpecParamList" resultMap="BaseResultMap" parameterType="com.leyou.item.pojo.TbSpecParam">
         select
         <include refid="Base_Column_List"/>
         from tb_spec_param where 1=1
@@ -36,7 +36,7 @@
     delete from tb_spec_param
     where id = #{id,jdbcType=BIGINT}
   </delete>
-    <insert id="insert" parameterType="com.leyou.search.item.pojo.TbSpecParam">
+    <insert id="insert" parameterType="com.leyou.item.pojo.TbSpecParam">
     insert into tb_spec_param (id, cid, group_id, 
       `name`, `numeric`, unit, generic,
       searching, segments)
@@ -44,7 +44,7 @@
       #{name,jdbcType=VARCHAR}, #{numeric,jdbcType=BIT}, #{unit,jdbcType=VARCHAR}, #{generic,jdbcType=BIT}, 
       #{searching,jdbcType=BIT}, #{segments,jdbcType=VARCHAR})
   </insert>
-    <insert id="insertSelective" parameterType="com.leyou.search.item.pojo.TbSpecParam">
+    <insert id="insertSelective" parameterType="com.leyou.item.pojo.TbSpecParam">
         insert into tb_spec_param
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -105,7 +105,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.leyou.search.item.pojo.TbSpecParam">
+    <update id="updateByPrimaryKeySelective" parameterType="com.leyou.item.pojo.TbSpecParam">
         update tb_spec_param
         <set>
             <if test="cid != null">
@@ -135,7 +135,7 @@
         </set>
         where id = #{id,jdbcType=BIGINT}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.leyou.search.item.pojo.TbSpecParam">
+    <update id="updateByPrimaryKey" parameterType="com.leyou.item.pojo.TbSpecParam">
     update tb_spec_param
     set cid = #{cid,jdbcType=BIGINT},
       group_id = #{groupId,jdbcType=BIGINT},

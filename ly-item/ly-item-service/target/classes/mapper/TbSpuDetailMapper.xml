@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.leyou.search.item.dao.TbSpuDetailMapper" >
-  <resultMap id="BaseResultMap" type="com.leyou.search.item.pojo.TbSpuDetail" >
+<mapper namespace="com.leyou.item.dao.TbSpuDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.leyou.item.pojo.TbSpuDetail" >
     <id column="spu_id" property="spuId" jdbcType="BIGINT" />
     <result column="specifications" property="specifications" jdbcType="VARCHAR" />
     <result column="special_spec" property="specialSpec" jdbcType="VARCHAR" />
     <result column="packing_list" property="packingList" jdbcType="VARCHAR" />
     <result column="after_service" property="afterService" jdbcType="VARCHAR" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.leyou.search.item.pojo.TbSpuDetail" extends="BaseResultMap" >
+  <resultMap id="ResultMapWithBLOBs" type="com.leyou.item.pojo.TbSpuDetail" extends="BaseResultMap" >
     <result column="description" property="description" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
@@ -29,7 +29,7 @@
     delete from tb_spu_detail
     where spu_id = #{spuId,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.leyou.search.item.pojo.TbSpuDetail" >
+  <insert id="insert" parameterType="com.leyou.item.pojo.TbSpuDetail" >
     insert into tb_spu_detail (spu_id, specifications, special_spec,
       packing_list, after_service, description
       )
@@ -37,7 +37,7 @@
       #{packingList,jdbcType=VARCHAR}, #{afterService,jdbcType=VARCHAR}, #{description,jdbcType=LONGVARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.leyou.search.item.pojo.TbSpuDetail" >
+  <insert id="insertSelective" parameterType="com.leyou.item.pojo.TbSpuDetail" >
     insert into tb_spu_detail
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="spuId != null" >
@@ -80,7 +80,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.leyou.search.item.pojo.TbSpuDetail" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.leyou.item.pojo.TbSpuDetail" >
     update tb_spu_detail
     <set >
       <if test="specifications != null" >
@@ -101,7 +101,7 @@
     </set>
     where spu_id = #{spuId,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.leyou.search.item.pojo.TbSpuDetail" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.leyou.item.pojo.TbSpuDetail" >
     update tb_spu_detail
     set specifications = #{specifications,jdbcType=VARCHAR},
       special_spec = #{specialSpec,jdbcType=VARCHAR},
@@ -110,7 +110,7 @@
       description = #{description,jdbcType=LONGVARCHAR}
     where spu_id = #{spuId,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.leyou.search.item.pojo.TbSpuDetail" >
+  <update id="updateByPrimaryKey" parameterType="com.leyou.item.pojo.TbSpuDetail" >
     update tb_spu_detail
     set specifications = #{specifications,jdbcType=VARCHAR},
       special_spec = #{specialSpec,jdbcType=VARCHAR},

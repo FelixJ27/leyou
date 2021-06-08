@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.leyou.search.item.dao.TbCategoryMapper">
-    <resultMap id="BaseResultMap" type="com.leyou.search.item.pojo.TbCategory">
+<mapper namespace="com.leyou.item.dao.TbCategoryMapper">
+    <resultMap id="BaseResultMap" type="com.leyou.item.pojo.TbCategory">
         <id column="id" property="id" jdbcType="BIGINT"/>
         <result column="name" property="name" jdbcType="VARCHAR"/>
         <result column="parent_id" property="parentId" jdbcType="BIGINT"/>
@@ -18,7 +18,7 @@
         where id = #{id,jdbcType=BIGINT}
     </select>
     <!--条件全查-->
-    <select id="select" resultMap="BaseResultMap" parameterType="com.leyou.search.item.pojo.TbCategory">
+    <select id="select" resultMap="BaseResultMap" parameterType="com.leyou.item.pojo.TbCategory">
         select
         <include refid="Base_Column_List"/>
         from tb_category
@@ -49,13 +49,13 @@
     delete from tb_category
     where id = #{id,jdbcType=BIGINT}
   </delete>
-    <insert id="insert" parameterType="com.leyou.search.item.pojo.TbCategory">
+    <insert id="insert" parameterType="com.leyou.item.pojo.TbCategory">
     insert into tb_category (id, `name`, parent_id,
       is_parent, sort)
     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{parentId,jdbcType=BIGINT}, 
       #{isParent,jdbcType=BIT}, #{sort,jdbcType=INTEGER})
   </insert>
-    <insert id="insertSelective" parameterType="com.leyou.search.item.pojo.TbCategory">
+    <insert id="insertSelective" parameterType="com.leyou.item.pojo.TbCategory">
         insert into tb_category
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -92,7 +92,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.leyou.search.item.pojo.TbCategory">
+    <update id="updateByPrimaryKeySelective" parameterType="com.leyou.item.pojo.TbCategory">
         update tb_category
         <set>
             <if test="name != null">
@@ -110,7 +110,7 @@
         </set>
         where id = #{id,jdbcType=BIGINT}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.leyou.search.item.pojo.TbCategory">
+    <update id="updateByPrimaryKey" parameterType="com.leyou.item.pojo.TbCategory">
     update tb_category
     set `name` = #{name,jdbcType=VARCHAR},
       parent_id = #{parentId,jdbcType=BIGINT},
