@@ -2,6 +2,7 @@ package com.leyou.common.utils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.istack.internal.Nullable;
 import org.slf4j.Logger;
@@ -51,6 +52,7 @@ public class JsonUtils {
     @Nullable
     public static <E> List<E> parseList(String json, Class<E> eClass) {
         try {
+            //mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             return mapper.readValue(json, mapper.getTypeFactory().constructCollectionType(List.class, eClass));
         } catch (IOException e) {
             logger.error("json解析出错：" + json, e);

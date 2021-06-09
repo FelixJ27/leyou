@@ -24,4 +24,6 @@ public interface TbSpecParamMapper {
     int updateByPrimaryKeySelective(TbSpecParam record);
 
     int updateByPrimaryKey(TbSpecParam record);
+
+    List<Long> selectIdByName(String name);
 }

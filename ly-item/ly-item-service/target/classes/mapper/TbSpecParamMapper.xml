@@ -26,6 +26,10 @@
             and cid = #{cid, jdbcType=BIGINT}
         </if>
     </select>
+    <select id="selectIdByName" resultType="java.lang.Long" parameterType="java.util.List">
+        select id from tb_spec_param
+        where `name` = #{name, jdbcType=VARCHAR}
+    </select>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
         select
         <include refid="Base_Column_List"/>

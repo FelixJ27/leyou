@@ -2,6 +2,8 @@ package com.leyou.item.dao;
 
 import com.leyou.item.pojo.TbSpuDetail;
 
+import java.util.List;
+
 public interface TbSpuDetailMapper {
     int deleteByPrimaryKey(Long spuId);
 
@@ -16,4 +18,8 @@ public interface TbSpuDetailMapper {
     int updateByPrimaryKeyWithBLOBs(TbSpuDetail record);
 
     int updateByPrimaryKey(TbSpuDetail record);
+
+    List<TbSpuDetail> selectAll();
+
+    int updateSelective(TbSpuDetail spuDetail);
 }

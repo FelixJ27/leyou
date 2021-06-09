@@ -1,6 +1,8 @@
 package com.leyou.item.pojo;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 import java.util.List;
@@ -10,6 +12,8 @@ import java.util.List;
  * @Description 抽象商品
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class TbSpu {
     /**
      * 主键
@@ -64,4 +68,17 @@ public class TbSpu {
 
     private List<TbSku> skus;
 
+    public TbSpu(Long id, String title, String subTitle, Long cid1, Long cid2, Long cid3, Long brandId, Boolean saleable, Boolean valid, Date createTime, Date lastUpdateTime) {
+        this.id = id;
+        this.title = title;
+        this.subTitle = subTitle;
+        this.cid1 = cid1;
+        this.cid2 = cid2;
+        this.cid3 = cid3;
+        this.brandId = brandId;
+        this.saleable = saleable;
+        this.valid = valid;
+        this.createTime = createTime;
+        this.lastUpdateTime = lastUpdateTime;
+    }
 }

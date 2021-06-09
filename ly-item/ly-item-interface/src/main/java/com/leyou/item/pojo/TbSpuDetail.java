@@ -15,7 +15,7 @@ public class TbSpuDetail {
     /**
      * 全部规格参数数据
      */
-    private String specifications;
+    private String genericSpec;
     /**
      * 特有规格参数及可选值信息
      */

@@ -2,6 +2,7 @@ package com.leyou.item.service;
 
 import com.leyou.item.pojo.TbSpecGroup;
 import com.leyou.item.pojo.TbSpecParam;
+import com.leyou.item.pojo.TbSpuDetail;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ import java.util.List;
 public interface SpecificationService {
     /**
      * 查询规格组
+     *
      * @param cid
      * @return
      */
@@ -19,6 +21,7 @@ public interface SpecificationService {
 
     /**
      * 查询规格参数组下的参数名
+     *
      * @param gid
      * @return
      */
@@ -26,12 +29,15 @@ public interface SpecificationService {
 
     /**
      * 新增规格参数组下参数名
+     *
      * @param specParam
      * @return
      */
     void addSpecParam(TbSpecParam specParam);
+
     /**
      * 跟新规格参数组下参数名
+     *
      * @param specParam
      * @return
      */
@@ -39,8 +45,19 @@ public interface SpecificationService {
 
     /**
      * 删除规格参数组下参数名
+     *
      * @param id
      * @return
      */
     void deleteSpecParam(Long id);
+
+    /**
+     * @Author Felix
+     * @Description 更新specDetail
+     * @Param
+     * @Return
+     */
+    void updateSpecDetail();
+
+    String conversion(String genericSpecOrigin);
 }

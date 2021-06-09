@@ -2,6 +2,7 @@ package com.leyou.item.web;
 
 import com.leyou.item.pojo.TbSpecGroup;
 import com.leyou.item.pojo.TbSpecParam;
+import com.leyou.item.pojo.TbSpuDetail;
 import com.leyou.item.service.SpecificationService;
 import com.leyou.item.service.TbBrandService;
 import org.springframework.http.HttpStatus;
@@ -68,4 +69,15 @@ public class SpecificationController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-} 
+    @PutMapping("updateSpecDetail")
+    public ResponseEntity<Void> updateSpecDetail() {
+        specificationService.updateSpecDetail();
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @PostMapping("testConversion")
+    public String testConversion(@PathVariable String json) {
+        String conversion = specificationService.conversion(json);
+        return conversion;
+    }
+ }

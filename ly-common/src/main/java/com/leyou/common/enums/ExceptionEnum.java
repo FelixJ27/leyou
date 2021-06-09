@@ -28,6 +28,7 @@ public enum ExceptionEnum {
     UPLOAD_FILE_FAIL(500, "文件上传失败"),
     DELETE_SPEC_PARAM_FAIL(500, "删除规格参数信息失败"),
     GOODS_SAVE_ERROR(500, "新增商品失败"),
+    UPDATE_SPU_DETAIL_FAIL(500, "更新商品详情失败")
     ;
     /**
      * 状态码
