@@ -22,6 +22,15 @@
         </if>
     </select>
 
+    <select id="queryBrandByIds" resultMap="BaseResultMap" parameterType="java.util.List">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM tb_brand
+        WHERE id IN
+        <foreach collection="list" item="id" open="(" close=")" separator=",">
+            #{id,jdbcType=BIGINT}
+        </foreach>
+    </select>
     <select id="queryByCategoryId" resultMap="BaseResultMap" parameterType="java.lang.Long">
         SELECT
             b.id,

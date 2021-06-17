@@ -25,6 +25,9 @@
         <if test="cid != null">
             and cid = #{cid, jdbcType=BIGINT}
         </if>
+        <if test="searching != null">
+            and searching = #{searching, jdbcType=BIT}
+        </if>
     </select>
     <select id="selectIdByName" resultType="java.lang.Long" parameterType="java.util.List">
         select id from tb_spec_param

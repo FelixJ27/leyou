@@ -6,6 +6,8 @@ spring:
   elasticsearch:
     rest:
       uris: 192.168.150.128:9300
+  jackson:
+    default-property-inclusion: non_null
   main:
     allow-bean-definition-overriding: true
 eureka:

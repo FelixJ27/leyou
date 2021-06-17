@@ -19,6 +19,7 @@ public interface TbBrandService {
 
     /**
      * 新增品牌
+     *
      * @param tbBrand
      * @param cids
      */
@@ -26,11 +27,11 @@ public interface TbBrandService {
 
     /**
      * 通过cid查询品牌
+     *
      * @param cid
      * @return
      */
     List<TbBrand> queryByCategoryId(Long cid);
-
 
 
     int deleteByPrimaryKey(Long id);
@@ -46,4 +47,6 @@ public interface TbBrandService {
     int updateByPrimaryKey(TbBrand record);
 
     TbBrand queryById(Long id);
+
+    List<TbBrand> queryBrandByIds(List<Long> ids);
 }

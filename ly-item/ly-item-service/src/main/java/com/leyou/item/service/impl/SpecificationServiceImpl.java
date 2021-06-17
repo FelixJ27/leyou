@@ -49,10 +49,11 @@ public class SpecificationServiceImpl implements SpecificationService {
     }
 
     @Override
-    public List<TbSpecParam> querySpecParamList(Long gid, Long cid) {
+    public List<TbSpecParam> querySpecParamList(Long gid, Long cid, Boolean searching) {
         TbSpecParam specParam = new TbSpecParam();
         specParam.setGroupId(gid);
         specParam.setCid(cid);
+        specParam.setSearching(searching);
         List<TbSpecParam> tbSpecParams = tbSpecParamMapper.querySpecParamList(specParam);
         if (CollectionUtils.isEmpty(tbSpecParams)) {
             throw new LyException(ExceptionEnum.SPEC_PARAM_NOT_FOUND);

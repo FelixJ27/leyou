@@ -44,4 +44,6 @@ public interface TbBrandMapper {
     int updateByPrimaryKey(TbBrand record);
 
     TbBrand queryById(Long id);
+
+    List<TbBrand> queryBrandByIds(List<Long> ids);
 }

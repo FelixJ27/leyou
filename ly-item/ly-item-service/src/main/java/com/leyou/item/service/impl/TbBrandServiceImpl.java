@@ -104,4 +104,13 @@ public class TbBrandServiceImpl implements TbBrandService {
     public TbBrand queryById(Long id) {
         return tbBrandMapper.queryById(id);
     }
+
+    @Override
+    public List<TbBrand> queryBrandByIds(List<Long> ids) {
+        List<TbBrand> brands = tbBrandMapper.queryBrandByIds(ids);
+        if (CollectionUtils.isEmpty(brands)) {
+            throw new LyException(ExceptionEnum.BRAND_NOT_FOUND);
+        }
+        return brands;
+    }
 }

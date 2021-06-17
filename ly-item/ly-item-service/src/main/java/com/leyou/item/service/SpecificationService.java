@@ -25,7 +25,7 @@ public interface SpecificationService {
      * @param gid
      * @return
      */
-    List<TbSpecParam> querySpecParamList(Long gid, Long cid);
+    List<TbSpecParam> querySpecParamList(Long gid, Long cid, Boolean searching);
 
     /**
      * 新增规格参数组下参数名
