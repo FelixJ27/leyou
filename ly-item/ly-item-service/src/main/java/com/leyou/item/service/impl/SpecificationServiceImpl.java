@@ -18,9 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -147,6 +145,27 @@ public class SpecificationServiceImpl implements SpecificationService {
 
         g = g.substring(0, g.lastIndexOf(",")) + "}";
         return g;
+    }
+
+    @Override
+    public List<TbSpecGroup> queryListByCid(Long cid) {
+        List<TbSpecGroup> specGroups = queryGroupByCid(cid);
+        List<TbSpecParam> specParams = querySpecParamList(null, cid, null);
+        //规格参数编程map,k是规格组id，v是规格组下所有参数
+        Map<Long, List<TbSpecParam>> map = new HashMap<>();
+        for (TbSpecParam param : specParams) {
+            if (!map.containsKey(param.getGroupId())) {
+                //这个组id在map中不存在，，新增一个list
+                map.put(param.getGroupId(), new ArrayList<>());
+            }
+            map.get(param.getGroupId()).add(param);
+        }
+
+
+        for (TbSpecGroup specGroup : specGroups) {
+            specGroup.setParams(map.get(specGroup.getId()));
+        }
+        return specGroups;
     }
 
     /**

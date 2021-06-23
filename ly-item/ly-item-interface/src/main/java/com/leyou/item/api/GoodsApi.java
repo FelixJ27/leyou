@@ -2,6 +2,7 @@ package com.leyou.item.api;
 
 import com.leyou.common.vo.PageResult;
 import com.leyou.item.pojo.TbSku;
+import com.leyou.item.pojo.TbSpu;
 import com.leyou.item.pojo.TbSpuDetail;
 import com.leyou.item.pojo.vo.SpuVo;
 import org.springframework.http.ResponseEntity;
@@ -39,4 +40,7 @@ public interface GoodsApi {
      */
     @GetMapping("/spu/detail/{id}")
     TbSpuDetail queryDetailById(@PathVariable("id") Long spuId);
+
+    @GetMapping("spu/{id}")
+    TbSpu querySpuById(@PathVariable("id") Long id);
 }

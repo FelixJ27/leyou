@@ -162,6 +162,21 @@ public class GoodsServiceImpl implements GoodsService {
         return skus;
     }
 
+    @Override
+    public TbSpu querySpuById(Long id) {
+        //查询spu
+        TbSpu spu = spuMapper.selectByPrimaryKey(id);
+        if (spu == null) {
+            throw new LyException(ExceptionEnum.GOODS_NOT_FOUND);
+        }
+
+        //查询sku
+        spu.setSkus(querySkuBySpuId(id));
+        //查询detail
+        spu.setSpuDetail(queryDetailById(id));
+        return spu;
+    }
+
     /**
      * @description: 处理商品分类名称
      * @auther: Felix

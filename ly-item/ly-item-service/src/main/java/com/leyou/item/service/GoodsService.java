@@ -30,4 +30,6 @@ public interface GoodsService {
      * @Return
      */
     List<TbSku> querySkuBySpuId(Long id);
+
+    TbSpu querySpuById(Long id);
 }

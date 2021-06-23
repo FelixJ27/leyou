@@ -2,6 +2,8 @@ package com.leyou.item.pojo;
 
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * @Author Felix
  * @Description 规格参数的分组
@@ -20,4 +22,6 @@ public class TbSpecGroup {
      * 规格组的名称
      */
     private String name;
+
+    private List<TbSpecParam> params;
 }

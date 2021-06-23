@@ -29,7 +29,7 @@ public class SpecificationController {
      * @auther: Felix
      */
     @GetMapping("groups/{cid}")
-    public ResponseEntity<List<TbSpecGroup>> queryGroupByCid(@PathVariable("cid")Long cid) {
+    public ResponseEntity<List<TbSpecGroup>> queryGroupByCid(@PathVariable("cid") Long cid) {
         return ResponseEntity.ok(specificationService.queryGroupByCid(cid));
     }
 
@@ -39,8 +39,8 @@ public class SpecificationController {
      */
     @GetMapping("params")
     public ResponseEntity<List<TbSpecParam>> queryParamList(@RequestParam(value = "gid", required = false) Long gid,
-                                                            @RequestParam (value = "cid", required = false) Long cid,
-                                                            @RequestParam(value = "search", required = false)Boolean searching) {
+                                                            @RequestParam(value = "cid", required = false) Long cid,
+                                                            @RequestParam(value = "search", required = false) Boolean searching) {
         return ResponseEntity.ok(specificationService.querySpecParamList(gid, cid, searching));
     }
 
@@ -81,4 +81,10 @@ public class SpecificationController {
         String conversion = specificationService.conversion(json);
         return conversion;
     }
- }
+
+
+    @GetMapping("spec/group")
+    public ResponseEntity<List<TbSpecGroup>> queryListByCid(@RequestParam("cid") Long cid) {
+        return ResponseEntity.ok(specificationService.queryListByCid(cid));
+    }
+}

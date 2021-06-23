@@ -60,4 +60,6 @@ public interface SpecificationService {
     void updateSpecDetail();
 
     String conversion(String genericSpecOrigin);
+
+    List<TbSpecGroup> queryListByCid(Long cid);
 }

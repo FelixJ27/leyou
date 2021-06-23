@@ -14,7 +14,8 @@
     <select id="queryGroupByCid" resultMap="BaseResultMap" parameterType="java.lang.Long">
         SELECT
         <include refid="Base_Column_List"/>
-        FROM tb_spec_group WHERE cid = #{cid}
+        FROM tb_spec_group WHERE
+         cid = #{cid,jdbcType=BIGINT}
     </select>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
         select

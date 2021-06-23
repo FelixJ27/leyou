@@ -50,7 +50,7 @@ public class GoodsController {
      * @Return
      */
     @GetMapping("/spu/detail/{id}")
-    public ResponseEntity<TbSpuDetail> queryDetailById(@PathVariable("id") Long spuId){
+    public ResponseEntity<TbSpuDetail> queryDetailById(@PathVariable("id") Long spuId) {
         return ResponseEntity.ok(goodsService.queryDetailById(spuId));
     }
 
@@ -61,7 +61,12 @@ public class GoodsController {
      * @Return
      */
     @GetMapping("/sku/list")
-    public ResponseEntity<List<TbSku>> querySkuBySpuId(@RequestParam("id")Long id) {
+    public ResponseEntity<List<TbSku>> querySkuBySpuId(@RequestParam("id") Long id) {
         return ResponseEntity.ok(goodsService.querySkuBySpuId(id));
+    }
+
+    @GetMapping("spu/{id}")
+    public ResponseEntity<TbSpu> querySpuById(@PathVariable("id") Long id) {
+        return ResponseEntity.ok(goodsService.querySpuById(id));
     }
 }

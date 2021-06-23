@@ -5,6 +5,8 @@ spring:
     name: page-service
   thymeleaf:
     cache: false
+  main:
+    allow-bean-definition-overriding: true
 eureka:
   client:
     service-url:
