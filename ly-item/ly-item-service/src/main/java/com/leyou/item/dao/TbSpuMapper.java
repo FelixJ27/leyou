@@ -1,5 +1,6 @@
 package com.leyou.item.dao;
 
+import com.leyou.item.pojo.TbSku;
 import com.leyou.item.pojo.TbSpu;
 import org.apache.ibatis.annotations.Param;
 

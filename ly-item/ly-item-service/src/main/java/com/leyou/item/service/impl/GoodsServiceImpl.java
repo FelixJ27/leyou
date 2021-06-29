@@ -14,6 +14,7 @@ import com.leyou.item.dao.TbSpuDetailMapper;
 import com.leyou.item.dao.TbSpuMapper;
 import com.leyou.item.dao.TbStockMapper;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,6 +41,8 @@ public class GoodsServiceImpl implements GoodsService {
     private TbSkuMapper skuMapper;
     @Autowired
     private TbStockMapper stockMapper;
+    @Autowired
+    private AmqpTemplate amqpTemplate;
 
     /**
      * @description: 分页模查商品及种类、品牌
@@ -94,8 +97,19 @@ public class GoodsServiceImpl implements GoodsService {
         TbSpuDetail spuDetail = spu.getSpuDetail();
         spuDetail.setSpuId(spu.getId());
         spuDetailMapper.insertSelective(spuDetail);
+        //新增sku和stock
+        saveSkuAndStock(spu);
+    }
 
+    /**
+     * @Author Felix
+     * @Description 新增sku和stock
+     * @Param
+     * @Return
+     */
+    private void saveSkuAndStock(TbSpu spu) {
         //新增sku
+        int count;
         List<TbSku> skus = spu.getSkus();
         List<TbStock> stockList = new ArrayList<>();
         for (TbSku sku : skus) {
@@ -158,7 +172,7 @@ public class GoodsServiceImpl implements GoodsService {
 
         Map<Long, Integer> stockMap = stocks.stream().
                 collect(Collectors.toMap(TbStock::getSkuId, TbStock::getStock));
-        skus.forEach(s->s.setStock(stockMap.get(s.getId())));
+        skus.forEach(s -> s.setStock(stockMap.get(s.getId())));
         return skus;
     }
 
@@ -178,6 +192,42 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     /**
+     * @Author Felix
+     * @Description 商品修改
+     * @Param
+     * @Return
+     */
+    @Override
+    @Transactional
+    public void updateGoods(TbSpu spu) {
+        List<TbSku> skuList = skuMapper.querySkuBySpuId(spu.getId());
+        if (!CollectionUtils.isEmpty(skuList)) {
+            //删除库存
+            List<Long> ids = skuList.stream().map(TbSku::getId).collect(Collectors.toList());
+            int count = skuMapper.deleteByIds(ids);
+            if (count != 1) {
+                throw new LyException(ExceptionEnum.DELETE_GOODS_SKU_FAIL);
+            }
+            //删除库存
+            int count2 = stockMapper.deleteByIds(ids);
+            if (count2 != 1) {
+                throw new LyException(ExceptionEnum.DELETE_STOCK_FAIL);
+            }
+        }
+        //修改spu
+        spu.setLastUpdateTime(new Date());
+        int count = spuMapper.updateByPrimaryKeySelective(spu);
+        if (count != 1) {
+            throw new LyException(ExceptionEnum.GOODS_UPDATE_ERROR);
+        }
+        //修改detail
+        TbSpuDetail spuDetail = spu.getSpuDetail();
+        spuDetailMapper.updateByPrimaryKeySelective(spuDetail);
+        //新增sku和stock
+        saveSkuAndStock(spu);
+    }
+
+    /**
      * @description: 处理商品分类名称
      * @auther: Felix
      */
@@ -188,4 +238,6 @@ public class GoodsServiceImpl implements GoodsService {
             spuVo.setCName(StringUtils.join(nameList, "/"));
         }
     }
+
+
 }

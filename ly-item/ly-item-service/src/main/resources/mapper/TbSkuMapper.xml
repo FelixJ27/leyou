@@ -155,4 +155,10 @@
       last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
+    <delete id="deleteByIds" parameterType="java.util.List">
+        <foreach collection="list" index="index" item="id" separator=";">
+            delete from tb_sku
+            where id = #{id, jdbcType=BIGINT}
+        </foreach>
+    </delete>
 </mapper>

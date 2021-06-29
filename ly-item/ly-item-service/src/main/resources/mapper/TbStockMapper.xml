@@ -122,4 +122,11 @@
       stock = #{stock,jdbcType=INTEGER}
     where sku_id = #{skuId,jdbcType=BIGINT}
   </update>
+    <delete id="deleteByIds" parameterType="java.util.List">
+        <foreach collection="list" index="index" item="id" separator=";">
+            delete from tb_stock
+            where sku_id = #{id, jdbcType=BIGINT}
+        </foreach>
+
+    </delete>
 </mapper>

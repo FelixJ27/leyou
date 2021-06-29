@@ -24,7 +24,6 @@ public class PageController {
     public String toItemPage(Model model, @PathVariable("id") Long spuId) {
         //查询模型数据
         Map<String, Object> attributes = pageService.loadModel(spuId);
-
         //准备模型数据
         model.addAllAttributes(attributes);
         return "item";

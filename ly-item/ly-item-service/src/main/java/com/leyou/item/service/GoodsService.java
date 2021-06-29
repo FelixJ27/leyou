@@ -32,4 +32,6 @@ public interface GoodsService {
     List<TbSku> querySkuBySpuId(Long id);
 
     TbSpu querySpuById(Long id);
+
+    void updateGoods(TbSpu spu);
 }

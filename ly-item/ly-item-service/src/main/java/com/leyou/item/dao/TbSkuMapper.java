@@ -18,4 +18,6 @@ public interface TbSkuMapper {
     int updateByPrimaryKey(TbSku record);
 
     List<TbSku> querySkuBySpuId(Long id);
+
+    int deleteByIds(List<Long> ids);
 }

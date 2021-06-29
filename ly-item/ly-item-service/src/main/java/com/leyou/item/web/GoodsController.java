@@ -69,4 +69,10 @@ public class GoodsController {
     public ResponseEntity<TbSpu> querySpuById(@PathVariable("id") Long id) {
         return ResponseEntity.ok(goodsService.querySpuById(id));
     }
+
+    @PutMapping("goods")
+    public ResponseEntity<Void> updateGoods(@RequestBody TbSpu spu) {
+        goodsService.updateGoods(spu);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
 }

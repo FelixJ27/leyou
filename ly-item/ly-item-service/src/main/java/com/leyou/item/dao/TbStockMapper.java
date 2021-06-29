@@ -31,4 +31,6 @@ public interface TbStockMapper {
     * @Return
     */
     List<TbStock> selectByIdList(List<Long> ids);
+
+    int deleteByIds(List<Long> ids);
 }
