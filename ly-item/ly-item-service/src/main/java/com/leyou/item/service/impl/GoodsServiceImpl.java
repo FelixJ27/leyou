@@ -99,6 +99,8 @@ public class GoodsServiceImpl implements GoodsService {
         spuDetailMapper.insertSelective(spuDetail);
         //新增sku和stock
         saveSkuAndStock(spu);
+
+        amqpTemplate.convertAndSend("item.insert", spu.getId());
     }
 
     /**
@@ -225,6 +227,8 @@ public class GoodsServiceImpl implements GoodsService {
         spuDetailMapper.updateByPrimaryKeySelective(spuDetail);
         //新增sku和stock
         saveSkuAndStock(spu);
+        //发送mq
+        amqpTemplate.convertAndSend("item.update", spu.getId());
     }
 
     /**

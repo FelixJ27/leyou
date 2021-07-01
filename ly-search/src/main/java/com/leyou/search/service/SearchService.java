@@ -298,4 +298,16 @@ public class SearchService {
             return null;
         }
     }
+
+    public void createOrUpdateIndex(Long spuId) {
+        TbSpu spu = goodsClient.querySpuById(spuId);
+        //构建goods
+        Goods goods = buildGoods(spu);
+        //存入索引库
+        repository.save(goods);
+    }
+
+    public void deleteIndex(Long spuId) {
+        repository.deleteById(spuId);
+    }
 }

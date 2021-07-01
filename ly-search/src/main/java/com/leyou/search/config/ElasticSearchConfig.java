@@ -16,7 +16,6 @@ public class ElasticSearchConfig {
     public RestHighLevelClient esRestClient(){
         RestHighLevelClient client = new RestHighLevelClient(
                 RestClient.builder(
-                        //在这里配置你的elasticsearch的情况
                         new HttpHost("192.168.150.128", 9200, "http")
                 )
         );

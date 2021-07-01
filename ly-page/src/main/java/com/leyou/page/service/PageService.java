@@ -55,17 +55,39 @@ public class PageService {
         return model;
     }
 
+    /**
+     * @Author Felix
+     * @Description 创建静态页
+     * @Param
+     * @Return
+     */
     public void createHtml(Long id) {
         //上下文
         Context context = new Context();
         context.setVariables(loadModel(id));
         //输出流
         File dest = new File("D:\\BaiduNetdiskDownload", id + ".html");
+        if (dest.exists()) {
+            dest.delete();
+        }
         try (PrintWriter writer = new PrintWriter(dest, "UTF-8")) {
             //生成html
             templateEngine.process("item", context, writer);
         } catch (Exception e) {
             log.error("[静态页服务]生成静态页异常", e);
+        }
+    }
+
+    /**
+     * @Author Felix
+     * @Description 删除静态页
+     * @Param
+     * @Return
+     */
+    public void deleteHtml(Long spuId) {
+        File dest = new File("D:\\BaiduNetdiskDownload", spuId + ".html");
+        if (dest.exists()) {
+            dest.delete();
         }
     }
 }

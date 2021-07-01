@@ -38,7 +38,7 @@ spring:
         max-interval: 30000ms
         multiplier: 2
       exchange: ly.item.exchange
-    publisher-confirms: true
+    publisher-confirm-type: correlated
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml
