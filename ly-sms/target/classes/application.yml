@@ -1,0 +1,16 @@
+server:
+  port: 8086
+spring:
+  application:
+    name: sms-server
+  rabbitmq:
+    host: 192.168.150.128
+    username: leetgou
+    password: root
+    virtual-host: /leetgou
+ly:
+  sms:
+    accessKeyId: LTAInjUm9kCq5R2E
+    accessKeySecret: T9LgGR0KY1MZlYhArmRgsREQnVkCwt
+    signName: 蜂鸟自由行 #签名名称
+    verifyCodeTemplate: SMS_172007796 #模板名称
