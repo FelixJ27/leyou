@@ -30,8 +30,8 @@ public class SmsUtil {
 
     @Autowired
     private SmsProperties prop;
-    @Resource
-    private StringRedisTemplate redisTemplete;
+    @Autowired
+    private StringRedisTemplate redisTemplate;
 
     //产品名称:云通信短信API产品,开发者无需替换
     static final String product = "Dysmsapi";
@@ -44,11 +44,12 @@ public class SmsUtil {
     public SendSmsResponse sendSms(String phoneNumber, String signName, String templateCode, String templateParam) {
         String key = KEY_PROFIX + phoneNumber;
         //读取时间
-        String lastTime = redisTemplete.opsForValue().get(key);
+        String lastTime = redisTemplate.opsForValue().get(key);
         //限流
         if (StringUtils.isNotBlank(lastTime)) {
             Long last = Long.valueOf(lastTime);
             if (System.currentTimeMillis() - last < SMS_MIN_INTERVAL_IN_MILLIS) {
+                log.info("[短信服务]发送短信频率过高，被拦截，手机号{}", phoneNumber);
                 return null;
             }
         }
@@ -80,8 +81,9 @@ public class SmsUtil {
             if (!"OK".equals(resp.getCode())) {
                 log.error("[短信服务]发送短信失败，phoneNumber:{}，原因:{}", phoneNumber, resp.getMessage());
             }
+            log.info("[短信服务]，发送验证码，手机号{}", phoneNumber);
             //发送短信成功后写入redis，指定生存时间为1分钟
-            redisTemplete.opsForValue().set(key, String.valueOf(System.currentTimeMillis()), 1, TimeUnit.MINUTES);
+            redisTemplate.opsForValue().set(key, String.valueOf(System.currentTimeMillis()), 1, TimeUnit.MINUTES);
             return resp;
         } catch (Exception e) {
             log.error("[短信服务]发送短信失败，phoneNumber:{}，原因:{}", phoneNumber, e);

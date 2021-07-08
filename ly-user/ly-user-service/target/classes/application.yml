@@ -1,8 +1,8 @@
 server:
-  port: 8081
+  port: 8085
 spring:
   application:
-    name: item-service
+    name: user-service
   datasource:
     #url: jdbc:mysql://localhost:3306/yun6?useUnicode=true&characterEncoding=UTF-8
     #username: root
@@ -31,17 +31,11 @@ spring:
     username: leetgou
     password: root
     virtual-host: /leetgou
-    template:
-      retry:
-        enabled: true
-        initial-interval: 10000ms
-        max-interval: 30000ms
-        multiplier: 2
-      exchange: ly.item.exchange
-    publisher-confirm-type: correlated
+  redis:
+    host: 192.168.150.128
 mybatis:
   mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.leyou.item.pojo
+  type-aliases-package: com.leyou.pojo
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 eureka:

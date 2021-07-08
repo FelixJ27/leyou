@@ -8,6 +8,10 @@ spring:
     username: leetgou
     password: root
     virtual-host: /leetgou
+  redis:
+    host: 192.168.150.128
+    port: 6379
+    timeout: 10000
 ly:
   sms:
     accessKeyId: LTAInjUm9kCq5R2E

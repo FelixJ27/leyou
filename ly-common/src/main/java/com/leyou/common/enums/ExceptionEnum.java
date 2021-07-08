@@ -24,14 +24,16 @@ public enum ExceptionEnum {
     GOODS_STOCK_NOT_FOUND(404, "商品库存不存在"),
     DELETE_STOCK_FAIL(500, "删除库存失败"),
     GOODS_DETAIL_NOT_FOUND(404, "商品详情不存在"),
-    GOODS_UPDATE_ERROR(500,"商品更新失败"),
+    GOODS_UPDATE_ERROR(500, "商品更新失败"),
     BRAND_SAVE_ERROR(500, "新增品牌失败"),
     SPEC_PARAM_SAVE_FAIL(500, "新增规格参数信息失败"),
     UPDATE_SPEC_PARAM_FAIL(500, "更新规格参数信息失败"),
     UPLOAD_FILE_FAIL(500, "文件上传失败"),
     DELETE_SPEC_PARAM_FAIL(500, "删除规格参数信息失败"),
     GOODS_SAVE_ERROR(500, "新增商品失败"),
-    UPDATE_SPU_DETAIL_FAIL(500, "更新商品详情失败")
+    UPDATE_SPU_DETAIL_FAIL(500, "更新商品详情失败"),
+    INVALID_USER_DATA_TYPE(400, "用户数据类型无效"),
+    INVALID_VERIFY_CODE(400, "无效的验证码")
     ;
     /**
      * 状态码
