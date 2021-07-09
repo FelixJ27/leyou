@@ -1,6 +1,7 @@
 package com.leyou.user.service;
 
 import com.leyou.pojo.User;
+import org.springframework.http.ResponseEntity;
 
 /**
  * @Author: Felix
@@ -26,4 +27,6 @@ public interface UserService {
      * @Description 注册
      */
     void  register(User user, String code);
+
+    User queryUserByUsernameAndPassword(String username, String password);
 }

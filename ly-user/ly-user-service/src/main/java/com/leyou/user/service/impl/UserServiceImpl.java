@@ -12,6 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -87,8 +88,23 @@ public class UserServiceImpl implements UserService {
         String salt = CodecUtils.generateSalt();
         user.setSalt(salt);
         //对密码加密
-       user.setPassword(CodecUtils.md5Hex(user.getPassword(), salt));
-       user.setCreated(new Date());
-       userMapper.insertSelective(user);
+        user.setPassword(CodecUtils.md5Hex(user.getPassword(), salt));
+        user.setCreated(new Date());
+        userMapper.insertSelective(user);
+    }
+
+    @Override
+    public User queryUserByUsernameAndPassword(String username, String password) {
+        User record = new User();
+        record.setUsername(username);
+        User user = userMapper.selectByUsername(username);
+        if (user == null) {
+            throw new LyException(ExceptionEnum.INVALID_USERNAME_PASSWORD);
+        }
+        //校验密码
+        if (!StringUtils.equals(user.getPassword(), CodecUtils.md5Hex(password, user.getSalt()))) {
+            throw new LyException(ExceptionEnum.INVALID_USERNAME_PASSWORD);
+        }
+        return user;
     }
 }

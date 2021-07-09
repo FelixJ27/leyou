@@ -1,5 +1,7 @@
 package com.leyou.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,11 +20,12 @@ public class User {
     @Length(min = 4, max = 32, message = "用户名长度必须在4~32位")
     private String username;
     @Length(min = 4, max = 32, message = "密码长度必须在4~32位")
+    @JsonIgnore
     private String password;
-    @Pattern(regexp = "^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[0,5-9]))\\\\d{8}$", message = "手机号不正确")
+    @Pattern(regexp = "/^(0|86|17951)?(13[0-9]|15[0123456789]|17[678]|18[0-9]|14[57])[0-9]{8}$/", message = "手机号不正确")
     private String phone;
 
     private Date created;
-
+    @JsonIgnore
     private String salt;
 }

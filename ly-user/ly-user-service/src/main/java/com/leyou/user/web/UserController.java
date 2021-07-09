@@ -47,13 +47,30 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
+    /**
+     * @Author Felix
+     * @Description 注册
+     */
     @PostMapping("register")
     public ResponseEntity<Void> register(@Valid User user, BindingResult result, @RequestParam("code") String code) {
-        if (result.hasFieldErrors()) {
+        /*if (result.hasFieldErrors()) {
             throw new RuntimeException(result.getFieldErrors().stream()
                     .map(e -> e.getDefaultMessage()).collect(Collectors.joining("|")));
-        }
+        }*/
         userService.register(user, code);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+
+    /**
+     * @Author Felix
+     * @Description 根据用户名和密码查询用户
+     */
+    @GetMapping("query")
+    public ResponseEntity<User> queryUserByUsernameAndPassword(
+            @RequestParam("username") String username,
+            @RequestParam("password") String password
+    ) {
+        return ResponseEntity.ok(userService.queryUserByUsernameAndPassword(username, password));
+    }
+
 }

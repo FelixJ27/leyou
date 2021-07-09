@@ -33,7 +33,8 @@ public enum ExceptionEnum {
     GOODS_SAVE_ERROR(500, "新增商品失败"),
     UPDATE_SPU_DETAIL_FAIL(500, "更新商品详情失败"),
     INVALID_USER_DATA_TYPE(400, "用户数据类型无效"),
-    INVALID_VERIFY_CODE(400, "无效的验证码")
+    INVALID_VERIFY_CODE(400, "无效的验证码"),
+    INVALID_USERNAME_PASSWORD(400,"无效的用户名密码")
     ;
     /**
      * 状态码
