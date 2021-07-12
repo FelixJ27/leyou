@@ -15,9 +15,9 @@ import java.security.PublicKey;
  */
 public class JwtTest {
 
-    private static final String pubKeyPath = "C:\\tmp\\rsa\\rsa.pub";
+    private static final String pubKeyPath = "D:\\software\\rsa\\rsa.pub";
 
-    private static final String priKeyPath = "C:\\tmp\\rsa\\rsa.pri";
+    private static final String priKeyPath = "D:\\software\\rsa\\rsa.pri";
 
     private PublicKey publicKey;
 
@@ -25,10 +25,10 @@ public class JwtTest {
 
     @Test
     public void testRsa() throws Exception {
-        RsaUtils.generateKey(pubKeyPath, priKeyPath, "234");
+        RsaUtils.generateKey(pubKeyPath, priKeyPath, "leetgou@163_JHR");
     }
 
-    @Before
+    //@Before
     public void testGetRsa() throws Exception {
         this.publicKey = RsaUtils.getPublicKey(pubKeyPath);
         this.privateKey = RsaUtils.getPrivateKey(priKeyPath);

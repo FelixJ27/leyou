@@ -39,7 +39,6 @@ spring:
         multiplier: 2
       exchange: ly.item.exchange
     publisher-confirm-type: correlated
-
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.leyou.item.pojo

@@ -38,11 +38,11 @@ public class SmsUtil {
     //产品域名,开发者无需替换
     static final String domain = "dysmsapi.aliyuncs.com";
 
-    private static final String KEY_PROFIX = "sms:phone:";
+    private static final String KEY_PREFIX = "sms:phone:";
     private static final long SMS_MIN_INTERVAL_IN_MILLIS = 60000;
 
     public SendSmsResponse sendSms(String phoneNumber, String signName, String templateCode, String templateParam) {
-        String key = KEY_PROFIX + phoneNumber;
+        String key = KEY_PREFIX + phoneNumber;
         //读取时间
         String lastTime = redisTemplate.opsForValue().get(key);
         //限流
