@@ -16,6 +16,15 @@
     <sql id="Base_Column_List">
     id, spu_id, title, images, price, indexes, own_spec, enable, create_time, last_update_time
   </sql>
+    <select id="querySkuByIds" resultMap="BaseResultMap" parameterType="java.util.List">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_sku
+        where id in
+        <foreach collection="list" separator="," open="(" close=")" item="id" index="index">
+            #{id, jdbcType=BIGINT}
+        </foreach>
+    </select>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
         select
         <include refid="Base_Column_List"/>

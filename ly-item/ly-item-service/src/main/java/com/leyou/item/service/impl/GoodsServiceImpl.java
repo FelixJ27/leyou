@@ -167,14 +167,7 @@ public class GoodsServiceImpl implements GoodsService {
         }
         //查库存
         List<Long> ids = skus.stream().map(TbSku::getId).collect(Collectors.toList());
-        List<TbStock> stocks = stockMapper.selectByIdList(ids);
-        if (CollectionUtils.isEmpty(stocks)) {
-            throw new LyException(ExceptionEnum.GOODS_STOCK_NOT_FOUND);
-        }
-
-        Map<Long, Integer> stockMap = stocks.stream().
-                collect(Collectors.toMap(TbStock::getSkuId, TbStock::getStock));
-        skus.forEach(s -> s.setStock(stockMap.get(s.getId())));
+       loadStockInSku(ids, skus);
         return skus;
     }
 
@@ -229,6 +222,28 @@ public class GoodsServiceImpl implements GoodsService {
         saveSkuAndStock(spu);
         //发送mq
         amqpTemplate.convertAndSend("item.update", spu.getId());
+    }
+
+    @Override
+    public List<TbSku> querySkuByIds(List<Long> ids) {
+        List<TbSku> skus = skuMapper.querySkuByIds(ids);
+        if (CollectionUtils.isEmpty(skus)) {
+            throw new LyException(ExceptionEnum.GOODS_SKU_NOT_FOUND);
+        }
+        loadStockInSku(ids,skus);
+        return skus;
+    }
+
+    public void loadStockInSku(List<Long> ids, List<TbSku> skus) {
+        //查库存
+        List<TbStock> stocks = stockMapper.selectByIdList(ids);
+        if (CollectionUtils.isEmpty(stocks)) {
+            throw new LyException(ExceptionEnum.GOODS_STOCK_NOT_FOUND);
+        }
+
+        Map<Long, Integer> stockMap = stocks.stream().
+                collect(Collectors.toMap(TbStock::getSkuId, TbStock::getStock));
+        skus.forEach(s -> s.setStock(stockMap.get(s.getId())));
     }
 
     /**

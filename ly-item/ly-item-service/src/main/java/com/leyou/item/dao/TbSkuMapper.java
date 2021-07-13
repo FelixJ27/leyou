@@ -20,4 +20,6 @@ public interface TbSkuMapper {
     List<TbSku> querySkuBySpuId(Long id);
 
     int deleteByIds(List<Long> ids);
+
+    List<TbSku> querySkuByIds(List<Long> ids);
 }

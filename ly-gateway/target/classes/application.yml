@@ -32,3 +32,15 @@ ribbon:
   ReadTimeout: 3500  #ribbon读取超时时长
   MaxAutoRetries: 0  #当前事务重复次数
   MaxAutoRestriesNextServer: 0  #切换任务重试次数
+ly:
+  jwt:
+    pubKeyPath: D:\software\rsa\rsa.pub  #公钥地址
+    cookieName: LY_TOKEN
+  filter:
+    allowPaths:
+      - /api/auth
+      - /api/search
+      - /api/user/register
+      - /api/user/check
+      - /api/user/code
+      - /api/item
