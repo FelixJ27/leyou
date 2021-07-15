@@ -41,7 +41,10 @@ public enum ExceptionEnum {
     INSERT_ORDER_ERROR(500, "新增订单失败"),
     INSERT_ORDER_DETAIL_ERROR(500, "新增订单详情失败"),
     INSERT_ORDER_STATUS_ERROR(500, "新增订单状态失败"),
-    STOCK_NOT_ENOUGH(500,"库存不足")
+    STOCK_NOT_ENOUGH(500,"库存不足"),
+    ORDER_NOT_FOUND(404, "订单不存在"),
+    ORDER_DETAIL_NOT_FOUND(404, "订单详情不存在"),
+    ORDER_STATUS_NOT_FOUND(404, "订单状态不存在"),
     ;
     /**
      * 状态码

@@ -1,10 +1,12 @@
 package com.leyou.order.pojo;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
 public class OrderDetail {
@@ -47,4 +49,6 @@ public class OrderDetail {
      * 商品图片
      */
     private String image;
+
+    private Order order;
 }

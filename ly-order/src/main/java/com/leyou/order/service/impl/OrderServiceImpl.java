@@ -24,6 +24,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import java.util.*;
@@ -118,5 +119,23 @@ public class OrderServiceImpl implements OrderService {
         List<CartDTO> carts = orderDTO.getCarts();
         goodsClient.decreaseStock(carts);
         return orderId;
+    }
+
+    @Override
+    public Order queryOrderById(Long id) {
+        Order order = orderMapper.selectByOrderId(id);
+        if (order == null) {
+            throw new LyException(ExceptionEnum.ORDER_NOT_FOUND);
+        }
+        List<OrderDetail> details = order.getOrderDetails();
+        if (CollectionUtils.isEmpty(details)) {
+            throw new LyException(ExceptionEnum.ORDER_DETAIL_NOT_FOUND);
+        }
+        OrderStatus orderStatus = orderStatusMapper.selectByPrimaryKey(id);
+        if (orderStatus == null) {
+            throw new LyException(ExceptionEnum.ORDER_STATUS_NOT_FOUND);
+        }
+        order.setOrderStatus(orderStatus);
+        return order;
     }
 }

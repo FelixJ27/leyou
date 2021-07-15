@@ -49,4 +49,6 @@ public class OrderStatus {
      * 评价时间
      */
     private Date commentTime;
+
+    private Order order;
 }
