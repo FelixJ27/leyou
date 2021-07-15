@@ -1,6 +1,7 @@
 package com.leyou.item.dao;
 
 import com.leyou.item.pojo.TbStock;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -33,4 +34,10 @@ public interface TbStockMapper {
     List<TbStock> selectByIdList(List<Long> ids);
 
     int deleteByIds(List<Long> ids);
+
+    /**
+     * @Author Felix
+     * @Description 减库存
+     */
+    int decreaseStock(@Param("id") Long id,@Param("num") Integer num);
 }

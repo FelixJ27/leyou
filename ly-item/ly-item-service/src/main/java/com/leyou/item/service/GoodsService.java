@@ -1,5 +1,6 @@
 package com.leyou.item.service;
 
+import com.leyou.common.dto.CartDTO;
 import com.leyou.common.vo.PageResult;
 import com.leyou.item.pojo.TbSku;
 import com.leyou.item.pojo.TbSpu;
@@ -36,4 +37,6 @@ public interface GoodsService {
     void updateGoods(TbSpu spu);
 
     List<TbSku> querySkuByIds(List<Long> ids);
+
+    void decreaseStock(List<CartDTO> cartDTOS);
 }

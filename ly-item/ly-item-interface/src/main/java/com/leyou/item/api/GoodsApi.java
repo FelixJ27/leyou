@@ -1,5 +1,6 @@
 package com.leyou.item.api;
 
+import com.leyou.common.dto.CartDTO;
 import com.leyou.common.vo.PageResult;
 import com.leyou.item.pojo.TbSku;
 import com.leyou.item.pojo.TbSpu;
@@ -43,4 +44,14 @@ public interface GoodsApi {
 
     @GetMapping("spu/{id}")
     TbSpu querySpuById(@PathVariable("id") Long id);
+
+    @GetMapping("/sku/list/ids")
+    List<TbSku> querySkuByIds(@RequestParam("ids") List<Long> ids);
+
+    /**
+     * @Author Felix
+     * @Description 减库存
+     */
+    @PostMapping("stock/decrease")
+    Void decreaseStock(@RequestBody List<CartDTO> cartDTOS);
 }

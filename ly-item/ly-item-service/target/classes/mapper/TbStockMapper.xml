@@ -116,17 +116,21 @@
         where sku_id = #{skuId,jdbcType=BIGINT}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.leyou.item.pojo.TbStock">
-    update tb_stock
-    set seckill_stock = #{seckillStock,jdbcType=INTEGER},
-      seckill_total = #{seckillTotal,jdbcType=INTEGER},
-      stock = #{stock,jdbcType=INTEGER}
-    where sku_id = #{skuId,jdbcType=BIGINT}
+        update tb_stock
+        set seckill_stock = #{seckillStock,jdbcType=INTEGER},
+          seckill_total = #{seckillTotal,jdbcType=INTEGER},
+          stock = #{stock,jdbcType=INTEGER}
+        where sku_id = #{skuId,jdbcType=BIGINT}
   </update>
     <delete id="deleteByIds" parameterType="java.util.List">
         <foreach collection="list" index="index" item="id" separator=";">
             delete from tb_stock
             where sku_id = #{id, jdbcType=BIGINT}
         </foreach>
-
     </delete>
+    <update id="decreaseStock" useGeneratedKeys="true" keyProperty="sku_id">
+        UPDATE tb_stock
+        SET stock = stock - #{num}
+        WHERE sku_id = #{id} and stock >= #{num}
+    </update>
 </mapper>

@@ -1,5 +1,6 @@
 package com.leyou.item.web;
 
+import com.leyou.common.dto.CartDTO;
 import com.leyou.common.vo.PageResult;
 import com.leyou.item.pojo.TbSku;
 import com.leyou.item.pojo.TbSpu;
@@ -78,6 +79,16 @@ public class GoodsController {
     @PutMapping("goods")
     public ResponseEntity<Void> updateGoods(@RequestBody TbSpu spu) {
         goodsService.updateGoods(spu);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+    /**
+     * @Author Felix
+     * @Description 减库存
+     */
+    @PostMapping("stock/decrease")
+    public ResponseEntity<Void> decreaseStock(@RequestBody List<CartDTO> cartDTOS) {
+        goodsService.decreaseStock(cartDTOS);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }

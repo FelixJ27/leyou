@@ -37,7 +37,11 @@ public enum ExceptionEnum {
     INVALID_USERNAME_PASSWORD(400,"无效的用户名密码"),
     CART_NOT_FOUND(404, "购物车为空"),
     CREATE_TOKEN_ERROR(500, "用户凭证生成失败"),
-    UNAUTHORIZED(403, "未授权")
+    UNAUTHORIZED(403, "未授权"),
+    INSERT_ORDER_ERROR(500, "新增订单失败"),
+    INSERT_ORDER_DETAIL_ERROR(500, "新增订单详情失败"),
+    INSERT_ORDER_STATUS_ERROR(500, "新增订单状态失败"),
+    STOCK_NOT_ENOUGH(500,"库存不足")
     ;
     /**
      * 状态码
