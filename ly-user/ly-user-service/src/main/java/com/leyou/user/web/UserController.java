@@ -58,7 +58,6 @@ public class UserController {
                     .map(e -> e.getDefaultMessage()).collect(Collectors.joining("|")));
         }*/
         userService.register(user, code);
-
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
